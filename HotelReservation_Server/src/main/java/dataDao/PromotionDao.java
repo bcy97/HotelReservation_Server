@@ -1,5 +1,7 @@
 package dataDao;
 
-public interface PromotionDao {
+import java.rmi.Remote;
+
+public interface PromotionDao extends Remote{
 
 }

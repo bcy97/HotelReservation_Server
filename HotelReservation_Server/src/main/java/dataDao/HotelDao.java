@@ -1,5 +1,7 @@
 package dataDao;
 
-public interface HotelDao {
+import java.rmi.Remote;
+
+public interface HotelDao extends Remote{
 
 }

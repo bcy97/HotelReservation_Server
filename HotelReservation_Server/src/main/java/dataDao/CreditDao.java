@@ -1,5 +1,7 @@
 package dataDao;
 
-public interface CreditDao {
+import java.rmi.Remote;
+
+public interface CreditDao extends Remote{
 
 }

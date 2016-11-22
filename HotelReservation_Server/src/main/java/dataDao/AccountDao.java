@@ -1,5 +1,7 @@
 package dataDao;
 
-public interface AccountDao {
+import java.rmi.Remote;
+
+public interface AccountDao extends Remote{
 
 }

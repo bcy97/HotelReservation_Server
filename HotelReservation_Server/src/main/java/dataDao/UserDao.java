@@ -1,5 +1,7 @@
 package dataDao;
 
-public interface UserDao {
+import java.rmi.Remote;
+
+public interface UserDao extends Remote{
 
 }

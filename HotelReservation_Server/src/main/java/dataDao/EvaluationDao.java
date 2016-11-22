@@ -1,5 +1,7 @@
 package dataDao;
 
-public interface EvaluationDao {
+import java.rmi.Remote;
+
+public interface EvaluationDao extends Remote{
 
 }

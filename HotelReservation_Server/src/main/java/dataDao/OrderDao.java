@@ -1,5 +1,7 @@
 package dataDao;
 
-public interface OrderDao {
+import java.rmi.Remote;
+
+public interface OrderDao extends Remote{
 
 }
