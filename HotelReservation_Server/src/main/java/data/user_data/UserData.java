@@ -1,5 +1,7 @@
 package data.user_data;
 
-public class UserData {
+import dataDao.UserDao;
+
+public class UserData implements UserDao{
 
 }

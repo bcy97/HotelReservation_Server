@@ -1,5 +1,7 @@
 package data.account_data;
 
-public class AcountData {
+import dataDao.AccountDao;
+
+public class AcountData implements AccountDao{
 
 }

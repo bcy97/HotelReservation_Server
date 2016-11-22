@@ -1,5 +1,7 @@
 package data.promotion_data;
 
-public class PromotionData {
+import dataDao.PromotionDao;
+
+public class PromotionData implements PromotionDao{
 
 }

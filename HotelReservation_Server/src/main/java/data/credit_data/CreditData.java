@@ -1,5 +1,7 @@
 package data.credit_data;
 
-public class CreditData {
+import dataDao.CreditDao;
+
+public class CreditData implements CreditDao{
 
 }

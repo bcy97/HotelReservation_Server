@@ -1,5 +1,7 @@
 package data.room_data;
 
-public class RoomData {
+import dataDao.RoomDao;
+
+public class RoomData implements RoomDao{
 
 }

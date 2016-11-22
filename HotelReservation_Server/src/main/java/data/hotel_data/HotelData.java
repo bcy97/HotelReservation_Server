@@ -1,5 +1,7 @@
 package data.hotel_data;
 
-public class HotelData {
+import dataDao.HotelDao;
+
+public class HotelData implements HotelDao{
 
 }

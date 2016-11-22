@@ -1,5 +1,7 @@
 package data.order_data;
 
-public class OrderData {
+import dataDao.OrderDao;
+
+public class OrderData implements OrderDao{
 
 }
