@@ -1,23 +1,22 @@
 package main;
 
 import java.rmi.registry.LocateRegistry;
-
 import data.account_data.AcountData;
+import data.client_data.ClientData;
 import data.credit_data.CreditData;
 import data.evaluation_data.EvaluationData;
 import data.hotel_data.HotelData;
 import data.order_data.OrderData;
 import data.promotion_data.PromotionData;
 import data.room_data.RoomData;
-import data.user_data.UserData;
 import dataDao.AccountDao;
+import dataDao.ClientDao;
 import dataDao.CreditDao;
 import dataDao.EvaluationDao;
 import dataDao.HotelDao;
 import dataDao.OrderDao;
 import dataDao.PromotionDao;
 import dataDao.RoomDao;
-import dataDao.UserDao;
 
 public class Main {
 
@@ -30,7 +29,7 @@ public class Main {
 			OrderDao order = new OrderData();
 			PromotionDao promotion = new PromotionData();
 			RoomDao room = new RoomData();
-			UserDao user = new UserData();
+			ClientDao client = new ClientData();
 			LocateRegistry.createRegistry(1099);
 			java.rmi.Naming.rebind("rmi://localhost:1099/account", account);
 			java.rmi.Naming.rebind("rmi://localhost:1099/credit", credit);
@@ -39,7 +38,7 @@ public class Main {
 			java.rmi.Naming.rebind("rmi://localhost:1099/order", order);
 			java.rmi.Naming.rebind("rmi://localhost:1099/promotion", promotion);
 			java.rmi.Naming.rebind("rmi://localhost:1099/room", room);
-			java.rmi.Naming.rebind("rmi://localhost:1099/user", user);
+			java.rmi.Naming.rebind("rmi://localhost:1099/user", client);
 			System.out.print("Ready");
 		} catch (Exception e) {
 			// TODO: handle exception

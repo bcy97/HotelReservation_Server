@@ -10,5 +10,5 @@ public interface AccountDao extends Remote{
 	
 	public boolean modifyPassword(AccountPO po);
 	
-	public AccountPO getAccountInfo(AccountPO po);
+	public AccountPO getAccountInfo(String accountID);
 }
