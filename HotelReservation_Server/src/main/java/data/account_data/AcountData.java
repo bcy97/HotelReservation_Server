@@ -15,11 +15,6 @@ public class AcountData implements AccountDao{
 		return false;
 	}
 
-	public AccountPO getAccountInfo(AccountPO po) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public AccountPO getAccountInfo(String accountID) {
 		// TODO Auto-generated method stub
 		return null;
