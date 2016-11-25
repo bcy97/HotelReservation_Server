@@ -20,4 +20,9 @@ public class AcountData implements AccountDao{
 		return null;
 	}
 
+	public AccountPO getAccountInfo(String accountID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
