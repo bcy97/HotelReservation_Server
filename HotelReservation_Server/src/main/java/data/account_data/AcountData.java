@@ -65,7 +65,7 @@ public class AcountData implements AccountDao{
 			
 			ResultSet rs=statement.executeQuery(sql);
 			if (rs.next()) {
-				accountPO = new AccountPO(0, null, null);
+				accountPO = new AccountPO(null, null, 0);
 				accountPO.setAccountID(rs.getString("userID"));
 				accountPO.setPassword(rs.getString("password"));
 				accountPO.setIdentity(rs.getInt("identity"));
