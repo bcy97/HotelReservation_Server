@@ -16,9 +16,6 @@ public class DBConnection {
 		try {
 			Class.forName(driver);
 			conn = DriverManager.getConnection(url, user, password);
-			if (!conn.isClosed()) {
-				System.out.println("connect successfully");
-			}
 			return conn;
 		} catch (ClassNotFoundException e) {
 			System.out.println(e.getMessage());
