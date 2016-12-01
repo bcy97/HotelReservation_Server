@@ -1,4 +1,7 @@
 package po;
+
+import java.util.ArrayList;
+
 /**
  * @param numberOfOrder 订单号
  * @param startTime 开始时间
@@ -8,6 +11,9 @@ package po;
  * @param hasChild  是否有小孩
  * @param numberOfPeople  入住人数
  * @param state 0:未执行 1:已执行 2:异常 3:撤销
+ * @param beforePromotionPrice 促销前价格
+ * @param afterPromotionPrice 促销后价格
+ * @param promotions 该订单使用的促销策略
  * @author Mark.W
  */
 public class OrderPO {
@@ -18,11 +24,15 @@ public class OrderPO {
 	private int numberOfRooms;
 	private boolean hasChild;
 	private int numberOfPeople;
-	private int state;  
-	
+	private int state; 
+	private double beforePromotionPrice;
+	private double afterPromotionPrice;
+	private ArrayList<String> promotions;
+
+
 	public OrderPO(String numberOfOrder,String startTime,String hotelId,
-			String endTime,int numberOfRooms,boolean hasChild,int numberOfPeople, int state) {
-		super();
+			String endTime,int numberOfRooms,boolean hasChild,int numberOfPeople, int state,
+			double beforePromotionPrice, double afterPromotionPrice, ArrayList<String> promotions) {
 		this.numberOfOrder=numberOfOrder;
 		this.startTime=startTime;
 		this.hotelId=hotelId;
@@ -31,6 +41,9 @@ public class OrderPO {
 		this.hasChild=hasChild;
 		this.numberOfPeople=numberOfPeople;
 		this.state = state;
+		this.beforePromotionPrice = beforePromotionPrice;
+		this.afterPromotionPrice = afterPromotionPrice;
+		this.promotions = promotions;
 	}
 	
 	public String getNumberOfOrder() {
@@ -95,5 +108,30 @@ public class OrderPO {
 
 	public void setState(int state) {
 		this.state = state;;
+	}
+	
+	public double getBeforePromotionPrice() {
+		return beforePromotionPrice;
+	}
+
+	public void setBeforePromotionPrice(double beforePromotionPrice) {
+		this.beforePromotionPrice = beforePromotionPrice;
+	}
+	
+
+	public double getAfterPromotionPrice() {
+		return afterPromotionPrice;
+	}
+
+	public void setAfterPromotionPrice(double afterPromotionPrice) {
+		this.afterPromotionPrice = afterPromotionPrice;
+	}
+
+	public ArrayList<String> getPromotions() {
+		return promotions;
+	}
+
+	public void setPromotions(ArrayList<String> promotions) {
+		this.promotions = promotions;
 	}
 }

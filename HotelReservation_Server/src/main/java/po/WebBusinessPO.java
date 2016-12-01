@@ -7,14 +7,14 @@ package po;
  * @author bcy
  *
  */
-public class WebUserPO {
+public class WebBusinessPO {
 	
 	private String userID;
 	private String trueName;
 	private String phoneNumber;
 	private String numberOfIdentityCard;
 	
-	public WebUserPO(String userID,String trueName,String phoneNumber,String numberOfIdentityCard) {
+	public WebBusinessPO(String userID,String trueName,String phoneNumber,String numberOfIdentityCard) {
 		this.userID=userID;
 		this.trueName=trueName;
 		this.phoneNumber=phoneNumber;

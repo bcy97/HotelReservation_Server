@@ -1,51 +1,46 @@
 package po;
 
 /**
- * @param nameOfUser 用户名
+ * @param userID 用户id
  * @param phoneNumber 电话
- * @param isMember 是否是会员
- * @param birthdayOfMember 会员生日
  * @param trueName 真实姓名
- * @param credit 信用
- * @param bussiness 所属企业
+ * @param identityID 身份证号
+ * @param headImagePath 头像路径
+ * @param vipType 会员类型 0:不是会员 1:普通会员 2:企业会员 
+ * @param vipLevel 会员等级 0:不是会员 
+ * @param vipInfo 若memberType为0则为空，否则为相应的生日或者企业信息
  * @author bcy
  *
  */
 public class ClientPO {
 	
-	private String nameOfUser;
+	private String userID;
 	private String phoneNumber;
-	private boolean isMember;
-	private String birthdayOfMember;
 	private String trueName;
-	private int credit;
-	private String bussiness;
-	
-	public ClientPO(String nameOfUser,String phoneNumber,boolean isMember,
-			String birthdayOfMember,String trueName,int credit, String bussiness) {
-		this.nameOfUser=nameOfUser;
-		this.phoneNumber=phoneNumber;
-		this.isMember=isMember;
-		this.birthdayOfMember=birthdayOfMember;
-		this.trueName=trueName;
-		this.credit=credit;
-		this.bussiness = bussiness;
-	}
-	
-	public String getBussiness() {
-		return bussiness;
+	private String identityID;
+	private String headImagePath;
+	private int vipType; 
+	private int vipLevel;
+	private String vipInfo;
+
+	public ClientPO(String userID, String phoneNumber, String trueName, String identityID, 
+			String headImagePath,int vipType, int vipLevel, String vipInfo) {
+		this.userID = userID;
+		this.phoneNumber = phoneNumber;
+		this.trueName = trueName;
+		this.identityID = identityID;
+		this.headImagePath = headImagePath;
+		this.vipType = vipType;
+		this.vipLevel = vipLevel;
+		this.vipInfo = vipInfo;
 	}
 
-	public void setBussiness(String bussiness) {
-		this.bussiness = bussiness;
+	public String getUserID() {
+		return userID;
 	}
 
-	public String getNameOfUser() {
-		return nameOfUser;
-	}
-
-	public void setNameOfUser(String nameOfUser) {
-		this.nameOfUser = nameOfUser;
+	public void setUserID(String userID) {
+		this.userID = userID;
 	}
 
 	public String getPhoneNumber() {
@@ -56,22 +51,6 @@ public class ClientPO {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public boolean isMember() {
-		return isMember;
-	}
-
-	public void setMember(boolean isMember) {
-		this.isMember = isMember;
-	}
-
-	public String getBirthdayOfMember() {
-		return birthdayOfMember;
-	}
-
-	public void setBirthdayOfMember(String birthdayOfMember) {
-		this.birthdayOfMember = birthdayOfMember;
-	}
-
 	public String getTrueName() {
 		return trueName;
 	}
@@ -80,12 +59,43 @@ public class ClientPO {
 		this.trueName = trueName;
 	}
 
-	public int getCredit() {
-		return credit;
+	public String getIdentityID() {
+		return identityID;
 	}
 
-	public void setCredit(int credit) {
-		this.credit = credit;
+	public void setIdentityID(String identityID) {
+		this.identityID = identityID;
+	}
+
+	public String getHeadImagePath() {
+		return headImagePath;
+	}
+
+	public void setHeadImagePath(String headImagePath) {
+		this.headImagePath = headImagePath;
 	}
 	
+	public int getVipType() {
+		return vipType;
+	}
+
+	public void setVipType(int vipType) {
+		this.vipType = vipType;
+	}
+
+	public int getVipLevel() {
+		return vipLevel;
+	}
+
+	public void setVipLevel(int vipLevel) {
+		this.vipLevel = vipLevel;
+	}
+
+	public String getVipInfo() {
+		return vipInfo;
+	}
+
+	public void setVipInfo(String vipInfo) {
+		this.vipInfo = vipInfo;
+	}
 }
