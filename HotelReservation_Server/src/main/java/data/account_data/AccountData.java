@@ -9,7 +9,7 @@ import data.database.DBConnection;
 import dataDao.AccountDao;
 import po.AccountPO;
 
-public class AcountData implements AccountDao{
+public class AccountData implements AccountDao{
 
 	public boolean addAccount(AccountPO po) {
 		// TODO Auto-generated method stub
@@ -23,7 +23,6 @@ public class AcountData implements AccountDao{
 			statement.executeUpdate(sql);
 			statement.close();
 			conn.close();
-			
 			
 			return true;
 			
