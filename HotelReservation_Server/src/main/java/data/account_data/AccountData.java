@@ -12,10 +12,9 @@ import po.AccountPO;
 public class AccountData implements AccountDao{
 
 	public boolean addAccount(AccountPO po) {
-		// TODO Auto-generated method stub
 		Connection conn;
 		Statement statement;
-		String sql = "insert into account (userID, password,identity) values('" +
+		String sql = "insert into account (AccountID, password,identity) values('" +
 				po.getAccountID() + "','" + po.getPassword() +"','"+po.getIdentity()+"')";		
 		try {
 			conn  = DBConnection.getConnection();
@@ -35,8 +34,7 @@ public class AccountData implements AccountDao{
 	public boolean modifyPassword(AccountPO po) {
 		Connection conn;
 		Statement statement;
-		String sql = "insert into account (userID, password,identity) values('" +
-				po.getAccountID() + "','" + po.getPassword() +"','"+po.getIdentity()+"')";		
+		String sql="update account set password='"+po.getPassword()+"' where AccountID='"+po.getAccountID()+"'";
 		try {
 			conn  = DBConnection.getConnection();
 			statement = conn.createStatement();
@@ -55,7 +53,7 @@ public class AccountData implements AccountDao{
 	public AccountPO getAccountInfo(String accountID) {
 		AccountPO accountPO;
 		
-		String sql="select * from tbl_user where vcUsername='"+accountID+"'";
+		String sql="select * from account where AccountID='"+accountID+"'";
 		Statement statement;
 		Connection conn;
 		
@@ -66,7 +64,7 @@ public class AccountData implements AccountDao{
 			ResultSet rs=statement.executeQuery(sql);
 			if (rs.next()) {
 				accountPO = new AccountPO(null, null, 0);
-				accountPO.setAccountID(rs.getString("userID"));
+				accountPO.setAccountID(rs.getString("AccountID"));
 				accountPO.setPassword(rs.getString("password"));
 				accountPO.setIdentity(rs.getInt("identity"));
 				
