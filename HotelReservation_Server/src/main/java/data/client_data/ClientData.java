@@ -36,7 +36,7 @@ public class ClientData implements ClientDao{
 		Connection conn;
 		Statement statement;
 		ClientPO clientPO;
-		String sql = "select * from account where userID='"+clientID+"'";
+		String sql = "select * from client where userID='"+clientID+"'";
 		
 		try {
 			conn = DBConnection.getConnection();
@@ -52,7 +52,7 @@ public class ClientData implements ClientDao{
 				clientPO.setHeadImagePath(rs.getString("headImagePath"));
 				clientPO.setVipType(rs.getInt("vipType"));
 				clientPO.setVipLevel(rs.getInt("vipLevel"));
-				clientPO.setVipInfo(rs.getString("vioInfo"));
+				clientPO.setVipInfo(rs.getString("vipInfo"));
 				
 				statement.close();
 				conn.close();

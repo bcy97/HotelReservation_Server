@@ -4,7 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-import data.account_data.AcountData;
+import data.account_data.AccountData;
 import data.client_data.ClientData;
 import data.credit_data.CreditData;
 import data.evaluation_data.EvaluationData;
@@ -44,7 +44,7 @@ public class DataRemoteObject extends UnicastRemoteObject
 	
 	protected DataRemoteObject() throws RemoteException {
 		super();
-		accountDao = new AcountData();
+		accountDao = new AccountData();
 		clientDao = new ClientData();
 		creditDao = new CreditData();
 		evaluationDao = new EvaluationData();
