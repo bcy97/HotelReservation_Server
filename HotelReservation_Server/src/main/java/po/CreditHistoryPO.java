@@ -65,8 +65,8 @@ public class CreditHistoryPO {
 		return creditChange;
 	}
 
-	public void setCreditChange(int cerditChange) {
-		this.creditChange = cerditChange;
+	public void setCreditChange(int creditChange) {
+		this.creditChange = creditChange;
 	}
 
 	public int getNowCredit() {
