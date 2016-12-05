@@ -1,45 +1,64 @@
 package po;
 
-import java.awt.Image;
 import java.util.ArrayList;
 
+
 /**
- * @param  kindOfRoom 房间类型
- * @param  price 房间价格
- * @param  isEmpty 是否空房
- * @param  roomID 房间ID
- * @param  pictures 房间照片
- * @author bcy
- *
+ * @param hotelId
+ * @param roomId
+ * @param roomType
+ * @param price 小数点保留两位
+ * @param isEmpty
+ * @param pictures
  */
 public class RoomPO {
-	private String kindOfRoom;
-	private int price;
+
+	private String hotelId;
+	private String roomId;
+	private int roomType; 
+	private double price;
 	private boolean isEmpty;
-	private int roomID;
-	private ArrayList<Image> pictures;
+	private ArrayList<String> pictures;
 	
-	public RoomPO(String kindOfRoom,int price,boolean isEmpty,int roomID,ArrayList<Image> pictures) {
-		this.kindOfRoom=kindOfRoom;
-		this.price=price;
-		this.isEmpty=isEmpty;
-		this.roomID=roomID;
-		this.pictures=pictures;
+	public RoomPO(String hotelId, String roomId, int roomType, double price, boolean isEmpty,
+			ArrayList<String> pictures) {
+		this.hotelId = hotelId;
+		this.roomId = roomId;
+		this.roomType = roomType;
+		this.price = price;
+		this.isEmpty = isEmpty;
+		this.pictures = pictures;
 	}
 
-	public String getKindOfRoom() {
-		return kindOfRoom;
+	public String getHotelId() {
+		return hotelId;
 	}
 
-	public void setKindOfRoom(String kindOfRoom) {
-		this.kindOfRoom = kindOfRoom;
+	public void setHotelId(String hotelId) {
+		this.hotelId = hotelId;
 	}
 
-	public int getPrice() {
+	public String getRoomId() {
+		return roomId;
+	}
+
+	public void setRoomId(String roomId) {
+		this.roomId = roomId;
+	}
+
+	public int getRoomType() {
+		return roomType;
+	}
+
+	public void setRoomType(int roomType) {
+		this.roomType = roomType;
+	}
+
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
@@ -51,21 +70,12 @@ public class RoomPO {
 		this.isEmpty = isEmpty;
 	}
 
-	public int getRoomID() {
-		return roomID;
-	}
-
-	public void setRoomID(int roomID) {
-		this.roomID = roomID;
-	}
-
-	public ArrayList<Image> getPictures() {
+	public ArrayList<String> getPictures() {
 		return pictures;
 	}
 
-	public void setPictures(ArrayList<Image> pictures) {
+	public void setPictures(ArrayList<String> pictures) {
 		this.pictures = pictures;
 	}
-	
 	
 }

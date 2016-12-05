@@ -11,7 +11,7 @@ public interface RoomDao extends Remote{
 	
 	public boolean addRoom(RoomPO roomPO);
 	
-	public boolean updateRoom(String hotelId, String roomId);
+	public boolean updateRoom(RoomPO roomPO);
 	
 	public ArrayList<RoomPO> getHotelRooms(String hotelId);
 }

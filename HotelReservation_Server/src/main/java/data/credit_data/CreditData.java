@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import data.database.DBConnection;
 import dataDao.CreditDao;
-import po.AccountPO;
 import po.CreditHistoryPO;
 
 public class CreditData implements CreditDao{
