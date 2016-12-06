@@ -129,6 +129,10 @@ public class DataRemoteObject extends UnicastRemoteObject
 	public HotelPO getHotelInfoByHotelID(String hotelID) {
 		return hotelDao.getHotelInfoByHotelID(hotelID);
 	}
+	
+	public ArrayList<String> getBookedHotelID(String userID) {
+		return null;
+	}
 
 	public ArrayList<String> getTradingAreas(String loaction) {
 		return hotelDao.getTradingAreas(loaction);

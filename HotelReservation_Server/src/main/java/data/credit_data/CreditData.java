@@ -19,9 +19,16 @@ public class CreditData implements CreditDao{
 		}
 		Connection conn;
 		Statement statement;
-		String sql = "insert into credithistory values('" 
-						+po.getUserID() + "','" + po.getTime() +"','"+po.getOrderID()+"','"+po.getAction()
-						+"','"+po.getCreditChange()+"','"+po.getNowCredit()+"')";		
+		String sql = "";
+		if (po.getOrderID()!=null) {
+			sql = "insert into credithistory values('" 
+					+po.getUserID() + "','" + po.getTime() +"','"+po.getOrderID()+"','"+po.getAction()
+					+"','"+po.getCreditChange()+"','"+po.getNowCredit()+"')";		
+		}else {
+			sql = "insert into credithistory(userID,time,action,creditChange,nowCredit) values('"
+					+po.getUserID()+"','"+po.getTime()+"','"+po.getAction()
+					+"','"+po.getCreditChange()+"','"+po.getNowCredit()+"')";		
+		}
 		try {
 			conn  = DBConnection.getConnection();
 			statement = conn.createStatement();
@@ -54,7 +61,7 @@ public class CreditData implements CreditDao{
 			while (rs.next()) {
 				CreditHistoryPO creditHistoryPO = new CreditHistoryPO(null, null, null, 0, 0, 0);
 				creditHistoryPO.setUserID(rs.getString("userID"));
-				creditHistoryPO.setTime(rs.getString("time"));
+				creditHistoryPO.setTime(rs.getString("time").substring(0,19));
 				creditHistoryPO.setOrderID(rs.getString("orderID"));
 				creditHistoryPO.setAction(rs.getInt("action"));
 				creditHistoryPO.setCreditChange(rs.getInt("creditChange"));

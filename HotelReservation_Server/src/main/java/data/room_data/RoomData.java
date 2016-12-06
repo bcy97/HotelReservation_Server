@@ -30,11 +30,6 @@ public class RoomData implements RoomDao{
 				roomPO.setRoomType(rs.getInt("roomType"));
 				roomPO.setPrice(rs.getDouble("price"));
 				roomPO.setEmpty(rs.getInt("isEmpty")==1);
-//				if (rs.getInt("isEmpty")==1) {
-//					roomPO.setEmpty(true);
-//				}else {
-//					roomPO.setEmpty(false);
-//				}
 				if (rs.getString("pictures")!=null) {
 					String[] pictures = rs.getString("pictures").split("###");
 					ArrayList<String> picture = new ArrayList<String>();
