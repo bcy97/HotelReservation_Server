@@ -11,9 +11,14 @@ public class RoomDataTest {
 		ArrayList<String> pictures = new ArrayList<String>();
 		pictures.add("abc");
 		pictures.add("123");
-		roomData.addRoom(new RoomPO("12345", "1234", 1, 200, true, null));
-//		RoomPO roomPO = roomData.getRoomInfo("12345", "1234");
+//		roomData.addRoom(new RoomPO("12345", "1234", 1, 200, true, null));
+		roomData.updateRoom(new RoomPO("12345", "1234", 1, 200, true, pictures));
+		
+		RoomPO roomPO = roomData.getRoomInfo("12345", "1234");
 //		System.out.println(roomPO.getHotelId()+" "+roomPO.getRoomId()+" "+roomPO.getRoomType()+" "+roomPO.getPrice()+" "+roomPO.isEmpty()+" "+roomPO.getPrice());
+		for (String string : roomPO.getPictures()) {
+			System.out.println(string);
+		}
 	}
 
 }

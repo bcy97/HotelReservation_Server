@@ -62,8 +62,8 @@ public class DataRemoteObject extends UnicastRemoteObject
 		return roomDao.addRoom(roomPO);
 	}
 
-	public boolean updateRoom(String hotelId, String roomId) {
-		return roomDao.updateRoom(hotelId, roomId);
+	public boolean updateRoom(RoomPO roomPO) {
+		return roomDao.updateRoom(roomPO);
 	}
 
 	public ArrayList<RoomPO> getHotelRooms(String hotelId) {

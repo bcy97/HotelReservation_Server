@@ -1,7 +1,6 @@
 package data.room_data;
 
 import java.sql.Connection;
-import java.sql.JDBCType;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -30,17 +29,22 @@ public class RoomData implements RoomDao{
 				roomPO.setRoomId(rs.getString("roomId"));
 				roomPO.setRoomType(rs.getInt("roomType"));
 				roomPO.setPrice(rs.getDouble("price"));
-				if (rs.getInt("isEmpty")==1) {
-					roomPO.setEmpty(true);
+				roomPO.setEmpty(rs.getInt("isEmpty")==1);
+//				if (rs.getInt("isEmpty")==1) {
+//					roomPO.setEmpty(true);
+//				}else {
+//					roomPO.setEmpty(false);
+//				}
+				if (rs.getString("pictures")!=null) {
+					String[] pictures = rs.getString("pictures").split("###");
+					ArrayList<String> picture = new ArrayList<String>();
+					for (String string : pictures) {
+						picture.add(string);
+					}
+					roomPO.setPictures(picture);
 				}else {
-					roomPO.setEmpty(false);
+					roomPO.setPictures(null);
 				}
-				String[] pictures = rs.getString("pictures").split("$");
-				ArrayList<String> picture = new ArrayList<String>();
-				for (String string : pictures) {
-					picture.add(string);
-				}
-				roomPO.setPictures(picture);
 				
 				statement.close();
 				conn.close();
@@ -65,17 +69,16 @@ public class RoomData implements RoomDao{
 		}else {
 			empty=0;
 		}
-		System.out.println(roomPO.getPictures());
 		pictures = "";
 		if (roomPO.getPictures()!=null) {
 			for (String  picture : roomPO.getPictures()) {
-				pictures+=picture+"$";
+				pictures+=picture+"###";
 			}
 			sql = "insert into room values('"+roomPO.getHotelId()+"','"+roomPO.getRoomId()+"',"+
 					roomPO.getRoomType()+","+roomPO.getPrice()+","+empty+",'"+pictures+"')";
 		}else {
-			sql = "insert into room values('"+roomPO.getHotelId()+"','"+roomPO.getRoomId()+"',"+
-					roomPO.getRoomType()+","+roomPO.getPrice()+","+empty+"'"+JDBCType.NULL+"')";
+			sql = "insert into room(hotelId,roomId,roomType,price,isEmpty) values('"+roomPO.getHotelId()+"','"+roomPO.getRoomId()+"',"+
+					roomPO.getRoomType()+","+roomPO.getPrice()+","+empty+")";
 		}
 		
 		try {
@@ -97,14 +100,22 @@ public class RoomData implements RoomDao{
 		Connection conn;
 		Statement statement;
 		String pictures = "";
-		for (String  picture : roomPO.getPictures()) {
-			pictures+=picture+"$";
-		}
-		String sql="update account set roomType='"+roomPO.getRoomType()
-						+"',price='"+roomPO.getPrice()
-						+"',isEmpty='"+roomPO.isEmpty()
-						+"',pictures='"+pictures
+		String sql="";
+		if (roomPO.getPictures()!=null) {
+			for (String  picture : roomPO.getPictures()) {
+				pictures+=picture+"###";
+			}
+			sql="update room set roomType="+roomPO.getRoomType()
+						+",price="+roomPO.getPrice()
+						+",isEmpty="+roomPO.isEmpty()
+						+",pictures='"+pictures
 						+"' where hotelId='"+roomPO.getHotelId()+"'and roomId='"+roomPO.getRoomId()+"'";
+		}else {
+			sql="update room set roomType="+roomPO.getRoomType()
+						+",price="+roomPO.getPrice()
+						+",isEmpty="+roomPO.isEmpty()
+						+"' where hotelId='"+roomPO.getHotelId()+"'and roomId='"+roomPO.getRoomId()+"'";
+		}
 		try {
 			conn  = DBConnection.getConnection();
 			statement = conn.createStatement();
@@ -142,9 +153,9 @@ public class RoomData implements RoomDao{
 				}else {
 					roomPO.setEmpty(false);
 				}
-				String[] pictures = rs.getString("pictures").split("$");
+				String[] pictures = rs.getString("pictures").split("###");
 				ArrayList<String> picture = new ArrayList<String>();
-				for (String string : picture) {
+				for (String string : pictures) {
 					picture.add(string);
 				}
 				roomPO.setPictures(picture);
