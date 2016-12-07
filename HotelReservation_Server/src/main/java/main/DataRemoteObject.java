@@ -122,8 +122,8 @@ public class DataRemoteObject extends UnicastRemoteObject
 		return hotelDao.addHotel(po);
 	}
 
-	public boolean modifyHotelInfo(HotelPO po) {
-		return hotelDao.modifyHotelInfo(po);
+	public boolean updateHotel(HotelPO po) {
+		return hotelDao.updateHotel(po);
 	}
 
 	public HotelPO getHotelInfoByHotelID(String hotelID) {

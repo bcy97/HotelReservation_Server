@@ -9,7 +9,7 @@ public interface HotelDao extends Remote{
 	
 	public boolean addHotel(HotelPO po);
 	
-	public boolean modifyHotelInfo(HotelPO po);
+	public boolean updateHotel(HotelPO po);
 	
 	public HotelPO getHotelInfoByHotelID(String hotelID);
 	

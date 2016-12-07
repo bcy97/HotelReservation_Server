@@ -12,7 +12,7 @@ public class HotelData implements HotelDao{
 		return false;
 	}
 
-	public boolean modifyHotelInfo(HotelPO po) {
+	public boolean updateHotel(HotelPO po) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -28,6 +28,11 @@ public class HotelData implements HotelDao{
 	}
 
 	public ArrayList<HotelPO> SearchHotelList(String tradingArea, int level, int priceFloor, int priceCeiling) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArrayList<String> getBookedHotelID(String userID) {
 		// TODO Auto-generated method stub
 		return null;
 	}
