@@ -37,4 +37,9 @@ public class HotelData implements HotelDao{
 		return null;
 	}
 
+	public ArrayList<HotelPO> SearchHotelList(String location, String tradingArea) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

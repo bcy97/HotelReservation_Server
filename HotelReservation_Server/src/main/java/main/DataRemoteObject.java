@@ -141,6 +141,10 @@ public class DataRemoteObject extends UnicastRemoteObject
 	public ArrayList<HotelPO> SearchHotelList(String tradingArea, int level, int priceFloor, int priceCeiling) {
 		return hotelDao.SearchHotelList(tradingArea, level, priceFloor, priceCeiling);
 	}
+	
+	public ArrayList<HotelPO> SearchHotelList(String location, String tradingArea) {
+		return null;
+	}
 
 	public boolean addEvalution(EvaluationPO po) {
 		return evaluationDao.addEvalution(po);
@@ -193,5 +197,6 @@ public class DataRemoteObject extends UnicastRemoteObject
 	public AccountPO getAccountInfo(String accountID) {
 		return accountDao.getAccountInfo(accountID);
 	}
+
 
 }
