@@ -27,17 +27,17 @@ public class HotelData implements HotelDao{
 		return null;
 	}
 
-	public ArrayList<HotelPO> SearchHotelList(String tradingArea, int level, int priceFloor, int priceCeiling) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public ArrayList<String> getBookedHotelID(String userID) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public ArrayList<HotelPO> SearchHotelList(String location, String tradingArea) {
+	public ArrayList<HotelPO> SearchHotelList(String city,String distract, String tradingArea) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArrayList<HotelPO> SearchHotelList(String city,String distract,String tradingArea, String hotelName) {
 		// TODO Auto-generated method stub
 		return null;
 	}

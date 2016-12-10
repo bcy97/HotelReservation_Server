@@ -1,6 +1,7 @@
 package main;
 
 import java.rmi.RemoteException;
+
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
@@ -138,11 +139,11 @@ public class DataRemoteObject extends UnicastRemoteObject
 		return hotelDao.getTradingAreas(loaction);
 	}
 
-	public ArrayList<HotelPO> SearchHotelList(String tradingArea, int level, int priceFloor, int priceCeiling) {
-		return hotelDao.SearchHotelList(tradingArea, level, priceFloor, priceCeiling);
+	public ArrayList<HotelPO> SearchHotelList(String city,String distract,String tradingArea,String hotelName) {
+		return hotelDao.SearchHotelList(city,distract,tradingArea, hotelName);
 	}
 	
-	public ArrayList<HotelPO> SearchHotelList(String location, String tradingArea) {
+	public ArrayList<HotelPO> SearchHotelList(String citty,String distract, String tradingArea) {
 		return null;
 	}
 
