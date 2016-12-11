@@ -45,6 +45,11 @@ public class HotelManagerData implements HotelManagerDao{
 	}
 
 	public boolean updateHotelManagerInfo(HotelManagerPO po) {
+		if (po==null||po.getHotelID()==null||po.getHotelID()==""||po.getIdentityCardID()==null||po.getIdentityCardID()==""||
+				po.getPhoneNumber()==null||po.getPhoneNumber()==""||po.getTrueName()==null||po.getTrueName()=="") {
+			System.out.println("data.user_data.HotelManagerData.updateHotelMangerInfo参数错误");
+			return false;
+		}
 		Connection conn;
 		Statement statement;
 		String sql="update hotelmanager set phoneNumber ='"+po.getPhoneNumber()+"', IdentityCardID='"+po.getIdentityCardID()
@@ -64,4 +69,32 @@ public class HotelManagerData implements HotelManagerDao{
 		return false;
 	}
 
+	public boolean addHotelManager(HotelManagerPO hotelManagerPO) {
+		if (hotelManagerPO==null||hotelManagerPO.getHotelID()==""||hotelManagerPO.getHotelID()==null||hotelManagerPO.getTrueName()==null||hotelManagerPO.getTrueName()==""
+				||hotelManagerPO.getPhoneNumber()==""||hotelManagerPO.getPhoneNumber()==null||hotelManagerPO.getIdentityCardID()==""||hotelManagerPO.getIdentityCardID()==null) {
+			System.out.println("data.user_data.WebBusinessData.addWebBusiness参数错误");
+			return false;
+		}
+		if (getHotelManagerInfo(hotelManagerPO.getHotelID())!=null) {
+			System.out.println("已存在该数据");
+			return false;
+		}
+		Connection conn;
+		Statement statement;
+		String sql = "insert into hotelmanager values('"+hotelManagerPO.getHotelID()+"','"+hotelManagerPO.getTrueName()+"','"
+						+hotelManagerPO.getPhoneNumber()+"','"+hotelManagerPO.getIdentityCardID()+"')";
+		try {
+			conn  = DBConnection.getConnection();
+			statement = conn.createStatement();
+			statement.executeUpdate(sql);
+			statement.close();
+			conn.close();
+			
+			return true;
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return false;
+	}
 }

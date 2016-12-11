@@ -43,6 +43,10 @@ public class HotelData implements HotelDao{
 			System.out.println("data.hotel_data.HotelData.addHotel参数错误");
 			return false;
 		}
+		if (hotelIDExist(po.getHoteID())) {
+			System.out.println("已存在该数据");
+			return false;
+		}
 		Connection conn;
 		Statement statement;
 		String pictures;
@@ -180,7 +184,25 @@ public class HotelData implements HotelDao{
 	}
 
 	public ArrayList<String> getTradingAreas(String city) {
-		// TODO Auto-generated method stub
+		Connection conn;
+		Statement statement;
+		ArrayList<String> tradingAreas;
+		String sql = "select * from locations where city='"+city+"'";
+		try {
+			tradingAreas = new ArrayList<String>();
+			conn = DBConnection.getConnection();
+			statement =conn.createStatement();
+		
+			ResultSet rs = statement.executeQuery(sql);
+			while(rs.next()){
+				tradingAreas.add(rs.getString("tradingArea"));
+			}
+			statement.close();
+			conn.close();
+			return tradingAreas;
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}		
 		return null;
 	}
 

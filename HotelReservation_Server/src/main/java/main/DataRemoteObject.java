@@ -15,7 +15,6 @@ import data.room_data.RoomData;
 import data.user_data.ClientData;
 import data.user_data.HotelManagerData;
 import data.user_data.WebBusinessData;
-import data.user_data.WebManagerData;
 import dataDao.AccountDao;
 import dataDao.CreditDao;
 import dataDao.HotelDao;
@@ -26,7 +25,6 @@ import dataDao.order.OrderListDao;
 import dataDao.user.ClientDao;
 import dataDao.user.HotelManagerDao;
 import dataDao.user.WebBusinessDao;
-import dataDao.user.WebManagerDao;
 import po.AccountPO;
 import po.ClientPO;
 import po.CreditHistoryPO;
@@ -39,7 +37,7 @@ import po.RoomPO;
 import po.WebBusinessPO;
 
 public class DataRemoteObject extends UnicastRemoteObject
-		implements AccountDao, ClientDao, HotelManagerDao,WebBusinessDao,WebManagerDao,CreditDao,
+		implements AccountDao, ClientDao, HotelManagerDao,WebBusinessDao,CreditDao,
 		HotelDao, OrderDao, OrderListDao,PromotionDao, RoomDao {
 
 	private static final long serialVersionUID = 4029039744279087114L;
@@ -47,7 +45,6 @@ public class DataRemoteObject extends UnicastRemoteObject
 	private ClientDao clientDao;
 	private HotelManagerDao hotelManagerDao;
 	private WebBusinessDao webBusinessDao;
-	private WebManagerDao webManagerDao;
 	private CreditDao creditDao;
 	private HotelDao hotelDao;
 	private OrderDao orderDao;
@@ -61,7 +58,6 @@ public class DataRemoteObject extends UnicastRemoteObject
 		clientDao = new ClientData();
 		hotelManagerDao = new HotelManagerData();
 		webBusinessDao = new WebBusinessData();
-		webManagerDao = new WebManagerData();
 		creditDao = new CreditData();
 		hotelDao = new HotelData();
 		orderDao = new OrderData();
@@ -170,6 +166,11 @@ public class DataRemoteObject extends UnicastRemoteObject
 		return false;
 	}
 
+	public boolean addHotel(HotelPO po) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 	public boolean updateHotel(HotelPO po) {
 		// TODO Auto-generated method stub
 		return false;
@@ -213,21 +214,6 @@ public class DataRemoteObject extends UnicastRemoteObject
 	public int getVIPCredit(int level) {
 		// TODO Auto-generated method stub
 		return 0;
-	}
-
-	public boolean addHotel(HotelPO hotelPO) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public boolean addHotelManager(HotelManagerPO hotelManagerPO) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public boolean addWebBusiness(WebBusinessPO webBusinessPO) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	public WebBusinessPO getWebBusinessInfo(String webBusiness_ID) {
