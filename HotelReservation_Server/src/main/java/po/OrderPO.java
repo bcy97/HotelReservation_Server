@@ -47,7 +47,7 @@ public class OrderPO {
 			int roomNum, ArrayList<String> roomIDs,boolean hasChild, int numberOfPeople, int state,
 			double beforePromotionPrice, double afterPromotionPrice, int promotionNum, 
 			ArrayList<String> promotionIDs,
-			String executedTime, String abnormalTime, String undoAbnormalTime) {
+			String executedTime, String undoAbnormalTime, String abnormalTime) {
 		this.uesrID = userID;
 		this.orderID=orderID;
 		this.startTime=startTime;
@@ -63,153 +63,178 @@ public class OrderPO {
 		this.promotionNum = promotionNum;
 		this.promotionIDs = promotionIDs;
 		this.executedTime = executedTime;
-		this.abnormalTime = abnormalTime;
 		this.undoAbnormalTime = undoAbnormalTime;
+		this.abnormalTime = abnormalTime;
 	}
-	
+
+
 	public String getUesrID() {
 		return uesrID;
 	}
+
 
 	public void setUesrID(String uesrID) {
 		this.uesrID = uesrID;
 	}
 
-	
-	public ArrayList<String> getRoomIDs() {
-		return roomIDs;
-	}
 
-	public void setRoomIDs(ArrayList<String> roomIDs) {
-		this.roomIDs = roomIDs;
-	}
-	
 	public String getOrderID() {
 		return orderID;
 	}
+
 
 	public void setOrderID(String orderID) {
 		this.orderID = orderID;
 	}
 
-	public String getStartTime() {
-		return startTime;
-	}
-
-	public void setStartTime(String startTime) {
-		this.startTime = startTime;
-	}
 
 	public String getHotelId() {
 		return hotelId;
 	}
 
+
 	public void setHotelId(String hotelId) {
 		this.hotelId = hotelId;
 	}
+
+
+	public String getStartTime() {
+		return startTime;
+	}
+
+
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+
 
 	public String getEndTime() {
 		return endTime;
 	}
 
+
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
 
-	public boolean isHasChild() {
-		return hasChild;
-	}
 
-	public void setHasChild(boolean hasChild) {
-		this.hasChild = hasChild;
-	}
-
-	public int getNumberOfPeople() {
-		return numberOfPeople;
-	}
-
-	public void setNumberOfPeople(int numberOfPeople) {
-		this.numberOfPeople = numberOfPeople;
-	}
-
-	public int getState() {
-		return state;
-	}
-
-	public void setState(int state) {
-		this.state = state;;
-	}
-	
-	public double getBeforePromotionPrice() {
-		return beforePromotionPrice;
-	}
-
-	public void setBeforePromotionPrice(double beforePromotionPrice) {
-		this.beforePromotionPrice = beforePromotionPrice;
-	}
-	
-
-	public double getAfterPromotionPrice() {
-		return afterPromotionPrice;
-	}
-
-	public void setAfterPromotionPrice(double afterPromotionPrice) {
-		this.afterPromotionPrice = afterPromotionPrice;
-	}
-
-	public ArrayList<String> getPromotions() {
-		return promotionIDs;
-	}
-
-	public void setPromotions(ArrayList<String> promotions) {
-		this.promotionIDs = promotions;
-	}
-	
-	public ArrayList<String> getPromotionIDs() {
-		return promotionIDs;
-	}
-
-	public void setPromotionIDs(ArrayList<String> promotionIDs) {
-		this.promotionIDs = promotionIDs;
-	}
-
-	public String getExecutedTime() {
-		return executedTime;
-	}
-
-	public void setExecutedTime(String executedTime) {
-		this.executedTime = executedTime;
-	}
-
-	public String getUndoAbnormalTime() {
-		return undoAbnormalTime;
-	}
-
-	public void setUndoAbnormalTime(String undoAbnormalTime) {
-		this.undoAbnormalTime = undoAbnormalTime;
-	}
-	
-	public String getAbnormalTime() {
-		return abnormalTime;
-	}
-
-	public void setAbnormalTime(String abnormalTime) {
-		this.abnormalTime = abnormalTime;
-	}
-	
 	public int getRoomNum() {
 		return roomNum;
 	}
+
 
 	public void setRoomNum(int roomNum) {
 		this.roomNum = roomNum;
 	}
 
+
+	public ArrayList<String> getRoomIDs() {
+		return roomIDs;
+	}
+
+
+	public void setRoomIDs(ArrayList<String> roomIDs) {
+		this.roomIDs = roomIDs;
+	}
+
+
+	public boolean isHasChild() {
+		return hasChild;
+	}
+
+
+	public void setHasChild(boolean hasChild) {
+		this.hasChild = hasChild;
+	}
+
+
+	public int getNumberOfPeople() {
+		return numberOfPeople;
+	}
+
+
+	public void setNumberOfPeople(int numberOfPeople) {
+		this.numberOfPeople = numberOfPeople;
+	}
+
+
+	public int getState() {
+		return state;
+	}
+
+
+	public void setState(int state) {
+		this.state = state;
+	}
+
+
+	public double getBeforePromotionPrice() {
+		return beforePromotionPrice;
+	}
+
+
+	public void setBeforePromotionPrice(double beforePromotionPrice) {
+		this.beforePromotionPrice = beforePromotionPrice;
+	}
+
+
+	public double getAfterPromotionPrice() {
+		return afterPromotionPrice;
+	}
+
+
+	public void setAfterPromotionPrice(double afterPromotionPrice) {
+		this.afterPromotionPrice = afterPromotionPrice;
+	}
+
+
 	public int getPromotionNum() {
 		return promotionNum;
 	}
 
+
 	public void setPromotionNum(int promotionNum) {
 		this.promotionNum = promotionNum;
 	}
+
+
+	public ArrayList<String> getPromotionIDs() {
+		return promotionIDs;
+	}
+
+
+	public void setPromotionIDs(ArrayList<String> promotionIDs) {
+		this.promotionIDs = promotionIDs;
+	}
+
+
+	public String getExecutedTime() {
+		return executedTime;
+	}
+
+
+	public void setExecutedTime(String executedTime) {
+		this.executedTime = executedTime;
+	}
+
+
+	public String getUndoAbnormalTime() {
+		return undoAbnormalTime;
+	}
+
+
+	public void setUndoAbnormalTime(String undoAbnormalTime) {
+		this.undoAbnormalTime = undoAbnormalTime;
+	}
+
+
+	public String getAbnormalTime() {
+		return abnormalTime;
+	}
+
+
+	public void setAbnormalTime(String abnormalTime) {
+		this.abnormalTime = abnormalTime;
+	}
+	
 }
