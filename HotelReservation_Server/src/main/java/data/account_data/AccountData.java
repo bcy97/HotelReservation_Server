@@ -12,6 +12,10 @@ import po.AccountPO;
 public class AccountData implements AccountDao{
 
 	public boolean addAccount(AccountPO po) {
+		if (po.getAccountID().length()<5||po.getPassword()==null||po.getPassword()=="") {
+			System.out.println("data.account_data.AccountData.addAccount参数错误");
+			return false;
+		}
 		Connection conn;
 		Statement statement;
 		String sql = "insert into account (AccountID, password,identity) values('" +

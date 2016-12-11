@@ -18,9 +18,9 @@ import java.util.ArrayList;
  * @param afterPromotionPrice 促销后价格
  * @param promotionNum 使用的促销策略的数量
  * @param promotionIDs 该订单使用的促销策略
- * @param executedTime 订单执行的时间 格式yyyy/MM/dd HH:mm:ss
- * @param undoAbnormalTime 订单撤销的时间 格式yyyy/MM/dd HH:mm:ss
- * @param abnormalTime 订单被置为异常的时间 格式yyyy/MM/dd HH:mm:ss	
+ * @param executedTime 订单执行的时间 格式yyyy-MM-dd HH:mm:ss
+ * @param undoAbnormalTime 订单撤销的时间 格式yyyy-MM-dd HH:mm:ss
+ * @param abnormalTime 订单被置为异常的时间 格式yyyy-MM-dd HH:mm:ss	
  * @author Mark.W
  */
 public class OrderPO {

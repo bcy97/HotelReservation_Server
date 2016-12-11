@@ -165,6 +165,11 @@ public class DataRemoteObject extends UnicastRemoteObject
 		return null;
 	}
 
+	public boolean hotelIDExist(String hotelID) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 	public boolean updateHotel(HotelPO po) {
 		// TODO Auto-generated method stub
 		return false;
@@ -180,7 +185,7 @@ public class DataRemoteObject extends UnicastRemoteObject
 		return null;
 	}
 
-	public ArrayList<HotelPO> SearchHotelList(String city, String distract, String tradingArea) {
+	public ArrayList<HotelPO> SearchHotelList(String city, String tradingArea) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -8,6 +8,8 @@ import po.HotelPO;
 
 public interface HotelDao extends Remote{
 	
+	public boolean hotelIDExist(String hotelID);
+
 	public boolean addHotel(HotelPO po);
 	
 	public boolean updateHotel(HotelPO po);
@@ -16,6 +18,6 @@ public interface HotelDao extends Remote{
 	
 	public ArrayList<String> getTradingAreas(String loaction);
 	
-	public ArrayList<HotelPO> SearchHotelList(String city,String distract,String tradingArea);
+	public ArrayList<HotelPO> SearchHotelList(String city,String tradingArea);
 	
 }

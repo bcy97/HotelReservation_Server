@@ -70,7 +70,7 @@ public class HotelPO {
 	 * @param emptyRoomNum
 	 * @param bussiness
 	 */
-	public HotelPO(String hoteID,String hotelName,String distract,String city,String tradingArea,
+	public HotelPO(String hoteID,String hotelName,String city,String distract,String tradingArea,
 			String locationOfHotel,int levelOfHotel,String introduction, String facilities, 
 			ArrayList<String> pictures,	HashMap<Integer, Integer> emptyRoomNum, String bussiness) {
 		this.hoteID=hoteID;
@@ -86,13 +86,13 @@ public class HotelPO {
 		this.emptyRoomNum=emptyRoomNum;
 		this.bussiness = bussiness;
 	}
-	
-	public String getDistract() {
-		return distract;
+
+	public String getHoteID() {
+		return hoteID;
 	}
 
-	public void setDistract(String distract) {
-		this.distract = distract;
+	public void setHoteID(String hoteID) {
+		this.hoteID = hoteID;
 	}
 
 	public String getHotelName() {
@@ -111,37 +111,12 @@ public class HotelPO {
 		this.city = city;
 	}
 
-	public ArrayList<String> getPicturesPath() {
-		return picturesPath;
+	public String getDistract() {
+		return distract;
 	}
 
-	public void setPicturesPath(ArrayList<String> picturesPath) {
-		this.picturesPath = picturesPath;
-	}
-
-	public String getFacilities() {
-		return facilities;
-	}
-
-	public void setFacilities(String facilities) {
-		this.facilities = facilities;
-	}
-
-	
-	public String getBussiness() {
-		return bussiness;
-	}
-
-	public void setBussiness(String bussiness) {
-		this.bussiness = bussiness;
-	}
-
-	public String getHoteID() {
-		return hoteID;
-	}
-
-	public void setHoteID(String hoteID) {
-		this.hoteID = hoteID;
+	public void setDistract(String distract) {
+		this.distract = distract;
 	}
 
 	public String getTradingArea() {
@@ -160,6 +135,14 @@ public class HotelPO {
 		this.locationOfHotel = locationOfHotel;
 	}
 
+	public double getEvaluationGrades() {
+		return evaluationGrades;
+	}
+
+	public void setEvaluationGrades(double evaluationGrades) {
+		this.evaluationGrades = evaluationGrades;
+	}
+
 	public int getLevelOfHotel() {
 		return levelOfHotel;
 	}
@@ -176,12 +159,20 @@ public class HotelPO {
 		this.introduction = introduction;
 	}
 
-	public ArrayList<String> getPictures() {
+	public String getFacilities() {
+		return facilities;
+	}
+
+	public void setFacilities(String facilities) {
+		this.facilities = facilities;
+	}
+
+	public ArrayList<String> getPicturesPath() {
 		return picturesPath;
 	}
 
-	public void setPictures(ArrayList<String> pictures) {
-		this.picturesPath = pictures;
+	public void setPicturesPath(ArrayList<String> picturesPath) {
+		this.picturesPath = picturesPath;
 	}
 
 	public HashMap<Integer, Integer> getEmptyRoomNum() {
@@ -191,13 +182,13 @@ public class HotelPO {
 	public void setEmptyRoomNum(HashMap<Integer, Integer> emptyRoomNum) {
 		this.emptyRoomNum = emptyRoomNum;
 	}
-	
-	public double getEvaluationGrades() {
-		return evaluationGrades;
+
+	public String getBussiness() {
+		return bussiness;
 	}
-	
-	public void setEvaluationGrades(double evaluationGrades) {
-		this.evaluationGrades = evaluationGrades;
+
+	public void setBussiness(String bussiness) {
+		this.bussiness = bussiness;
 	}
 	
 }
