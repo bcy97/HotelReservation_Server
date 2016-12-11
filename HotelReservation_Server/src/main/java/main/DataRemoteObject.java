@@ -6,40 +6,52 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import data.account_data.AccountData;
-import data.client_data.ClientData;
 import data.credit_data.CreditData;
-import data.evaluation_data.EvaluationData;
 import data.hotel_data.HotelData;
 import data.order_data.OrderData;
+import data.order_data.OrderListData;
 import data.promotion_data.PromotionData;
 import data.room_data.RoomData;
+import data.user_data.ClientData;
+import data.user_data.HotelManagerData;
+import data.user_data.WebBusinessData;
+import data.user_data.WebManagerData;
 import dataDao.AccountDao;
-import dataDao.ClientDao;
 import dataDao.CreditDao;
-import dataDao.EvaluationDao;
 import dataDao.HotelDao;
-import dataDao.OrderDao;
 import dataDao.PromotionDao;
 import dataDao.RoomDao;
+import dataDao.order.OrderDao;
+import dataDao.order.OrderListDao;
+import dataDao.user.ClientDao;
+import dataDao.user.HotelManagerDao;
+import dataDao.user.WebBusinessDao;
+import dataDao.user.WebManagerDao;
 import po.AccountPO;
 import po.ClientPO;
 import po.CreditHistoryPO;
 import po.EvaluationPO;
+import po.HotelManagerPO;
 import po.HotelPO;
 import po.OrderPO;
 import po.PromotionPO;
 import po.RoomPO;
+import po.WebBusinessPO;
 
 public class DataRemoteObject extends UnicastRemoteObject
-		implements AccountDao, ClientDao, CreditDao, EvaluationDao, HotelDao, OrderDao, PromotionDao, RoomDao {
+		implements AccountDao, ClientDao, HotelManagerDao,WebBusinessDao,WebManagerDao,CreditDao,
+		HotelDao, OrderDao, OrderListDao,PromotionDao, RoomDao {
 
 	private static final long serialVersionUID = 4029039744279087114L;
 	private AccountDao accountDao;
 	private ClientDao clientDao;
+	private HotelManagerDao hotelManagerDao;
+	private WebBusinessDao webBusinessDao;
+	private WebManagerDao webManagerDao;
 	private CreditDao creditDao;
-	private EvaluationDao evaluationDao;
 	private HotelDao hotelDao;
 	private OrderDao orderDao;
+	private OrderListDao orderListDao;
 	private PromotionDao promotionDao;
 	private RoomDao roomDao;
 	
@@ -47,156 +59,220 @@ public class DataRemoteObject extends UnicastRemoteObject
 		super();
 		accountDao = new AccountData();
 		clientDao = new ClientData();
+		hotelManagerDao = new HotelManagerData();
+		webBusinessDao = new WebBusinessData();
+		webManagerDao = new WebManagerData();
 		creditDao = new CreditData();
-		evaluationDao = new EvaluationData();
 		hotelDao = new HotelData();
 		orderDao = new OrderData();
+		orderListDao = new OrderListData();
 		promotionDao = new PromotionData();
 		roomDao = new RoomData();
 	}
 
 	public RoomPO getRoomInfo(String hotelId, String roomId) {
-		return roomDao.getRoomInfo(hotelId, roomId);
-	}
-
-	public boolean addRoom(RoomPO roomPO) {
-		return roomDao.addRoom(roomPO);
-	}
-
-	public boolean updateRoom(RoomPO roomPO) {
-		return roomDao.updateRoom(roomPO);
-	}
-
-	public ArrayList<RoomPO> getHotelRooms(String hotelId) {
-		return roomDao.getHotelRooms(hotelId);
-	}
-
-	public ArrayList<PromotionPO> getHotelPromotions(String hotel) {
-		return promotionDao.getHotelPromotions(hotel);
-	}
-
-	public PromotionPO getPromotion(String promotionID) {
-		return promotionDao.getPromotion(promotionID);
-	}
-
-	public ArrayList<PromotionPO> getWebPromotions() {
-		return promotionDao.getWebPromotions();
-	}
-
-	public boolean addPromotion(PromotionPO promotionPO) {
-		return promotionDao.addPromotion(promotionPO);
-	}
-
-	public boolean updatePromotion(PromotionPO promotionPO) {
-		return promotionDao.updatePromotion(promotionPO);
-	}
-
-	public ArrayList<OrderPO> getOrderListByUserId(String userID) {
-		return orderDao.getOrderListByUserId(userID);
-	}
-
-	public ArrayList<OrderPO> getOrderListByHotelID(String hotelID) {
-		return orderDao.getOrderListByHotelID(hotelID);
-	}
-
-	public ArrayList<OrderPO> getHotelDailyOrders(String hotelID) {
-		return orderDao.getHotelDailyOrders(hotelID);
-	}
-
-	public ArrayList<OrderPO> getAllDailyOrders(String time) {
-		return orderDao.getAllDailyOrders(time);
-	}
-
-	public boolean updateOrder(OrderPO orderPO) {
-		return orderDao.updateOrder(orderPO);
-	}
-
-	public boolean addOrder(OrderPO orderPO) {
-		return orderDao.addOrder(orderPO);
-	}
-
-	public OrderPO getOrderByOrderID(String orderID) {
-		return orderDao.getOrderByOrderID(orderID);
-	}
-
-	public boolean addHotel(HotelPO po) {
-		return hotelDao.addHotel(po);
-	}
-
-	public boolean updateHotel(HotelPO po) {
-		return hotelDao.updateHotel(po);
-	}
-
-	public HotelPO getHotelInfoByHotelID(String hotelID) {
-		return hotelDao.getHotelInfoByHotelID(hotelID);
-	}
-	
-	public ArrayList<String> getBookedHotelID(String userID) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public ArrayList<String> getTradingAreas(String loaction) {
-		return hotelDao.getTradingAreas(loaction);
+	public boolean addRoom(RoomPO roomPO) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
-	public ArrayList<HotelPO> SearchHotelList(String city,String distract,String tradingArea,String hotelName) {
-		return hotelDao.SearchHotelList(city,distract,tradingArea, hotelName);
+	public boolean updateRoom(RoomPO roomPO) {
+		// TODO Auto-generated method stub
+		return false;
 	}
-	
-	public ArrayList<HotelPO> SearchHotelList(String citty,String distract, String tradingArea) {
+
+	public ArrayList<RoomPO> getHotelRooms(String hotelId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArrayList<PromotionPO> getHotelPromotions(String hotel, int promotionType) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArrayList<PromotionPO> getWebPromotions(int promotionType) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public PromotionPO getPromotion(String promotionID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean addPromotion(PromotionPO promotionPO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean updatePromotion(PromotionPO promotionPO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public ArrayList<OrderPO> getOrderListByUserId(String userID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArrayList<OrderPO> getOrderListByHotelID(String hotelID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArrayList<OrderPO> getAllDailyOrders(String time) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean addOrder(OrderPO orderPO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean updateOrder(OrderPO orderPO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public OrderPO getOrderByOrderID(String orderID) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public boolean addEvalution(EvaluationPO po) {
-		return evaluationDao.addEvalution(po);
+		// TODO Auto-generated method stub
+		return false;
 	}
 
-	public boolean deleteEvaluation(EvaluationPO po) {
-		return evaluationDao.deleteEvaluation(po);
-	}
-
-	public EvaluationPO getEvaluationByOrderID(String order_id) {
-		return evaluationDao.getEvaluationByOrderID(order_id);
+	public EvaluationPO getEvaluationByOrderID(String orderID) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	public ArrayList<EvaluationPO> getEvaluationByHotelID(String hotelID) {
-		return evaluationDao.getEvaluationByHotelID(hotelID);
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArrayList<String> getBookedHotelList(String userID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean updateHotel(HotelPO po) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public HotelPO getHotelInfoByHotelID(String hotelID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArrayList<String> getTradingAreas(String loaction) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArrayList<HotelPO> SearchHotelList(String city, String distract, String tradingArea) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	public boolean changeCredit(CreditHistoryPO po) {
-		return creditDao.changeCredit(po);
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	public ArrayList<CreditHistoryPO> getCreditHistory(String userID) {
-		return creditDao.getCreditHistory(userID);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	public int getCredit(String userID) {
-		return creditDao.getCredit(userID);
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public boolean setVIPCredit(int level, int credit_num) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public int getVIPCredit(int level) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public boolean addHotel(HotelPO hotelPO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean addHotelManager(HotelManagerPO hotelManagerPO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean addWebBusiness(WebBusinessPO webBusinessPO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public WebBusinessPO getWebBusinessInfo(String webBusiness_ID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean updateWebBusinessInfo(WebBusinessPO webBusinessInfo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public HotelManagerPO getHotelManagerInfo(String hotel_ID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean updateHotelManagerInfo(HotelManagerPO po) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	public boolean addClient(ClientPO po) {
-		return clientDao.addClient(po);
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	public ClientPO getClientInfo(String clientID) {
-		return clientDao.getClientInfo(clientID);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	public boolean updateClientInfo(ClientPO clientPO) {
-		return clientDao.updateClientInfo(clientPO);
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	public boolean addAccount(AccountPO po) {
-		return accountDao.addAccount(po);
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	public boolean modifyPassword(AccountPO po) {
-		return accountDao.modifyPassword(po);
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	public AccountPO getAccountInfo(String accountID) {
-		return accountDao.getAccountInfo(accountID);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

@@ -1,4 +1,4 @@
-package dataDao;
+package dataDao.user;
 
 import java.rmi.Remote;
 

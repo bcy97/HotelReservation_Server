@@ -86,4 +86,14 @@ public class CreditData implements CreditDao{
 		return creditHistory.get(creditHistory.size()-1).getNowCredit();
 	}
 
+	public boolean setVIPCredit(int level, int credit_num) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public int getVIPCredit(int level) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

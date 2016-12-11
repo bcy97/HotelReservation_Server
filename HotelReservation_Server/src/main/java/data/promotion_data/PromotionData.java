@@ -7,17 +7,17 @@ import po.PromotionPO;
 
 public class PromotionData implements PromotionDao{
 
-	public ArrayList<PromotionPO> getHotelPromotions(String hotel) {
+	public ArrayList<PromotionPO> getHotelPromotions(String hotel, int promotionType) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArrayList<PromotionPO> getWebPromotions(int promotionType) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public PromotionPO getPromotion(String promotionID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public ArrayList<PromotionPO> getWebPromotions() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -32,4 +32,5 @@ public class PromotionData implements PromotionDao{
 		return false;
 	}
 
+	
 }

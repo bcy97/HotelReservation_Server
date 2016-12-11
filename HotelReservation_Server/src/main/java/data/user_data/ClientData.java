@@ -1,12 +1,13 @@
-package data.client_data;
+package data.user_data;
 
 import java.sql.Connection;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import data.database.DBConnection;
-import dataDao.ClientDao;
+import dataDao.user.ClientDao;
 import po.ClientPO;
 
 public class ClientData implements ClientDao{
