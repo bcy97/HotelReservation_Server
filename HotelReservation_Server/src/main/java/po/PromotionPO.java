@@ -3,42 +3,68 @@ package po;
 import java.util.HashMap;
 
 /**
- * @param promotionID 促销ID
- * @param name 促销名称
- * @param hotelID 酒店ID
- * @param isWeb 是否为网站促销策略
- * @param discount 折扣
- * @param enough 满多少
- * @param enoughMinus 减多少
- * @param startTime 促销开始时间
- * @param endTime 促销结束时间
- * @param vipLevelDiscount 会员等级对应折扣
- * @param vipLocationDiscount 会员特定商圈专属折扣
- * @author bcy
- *
+ * @param promotionType  //0:所有promotion 1:酒店生日折扣 2:酒店三间及以上预定特惠 3:酒店合作企业特惠 4:酒店双11(特定期间特惠) 
+						//5:网站双11(特定期间优惠) 6:网站vip不同商圈不同优惠 7:网站VIP不同等级不同优惠
+ * @param promotionID
+ * @param hotelID
+ * @param promotionName
+ * @param discount
+ * @param startTime
+ * @param endTime
+ * @param cooperateBusiness
+ * @param roomsAndDiscount		double数组下标+3(0下标对应值为3间，1下标对应4间)表示房间数量，值表示折扣，保留两位小数
+ * @param vipTradeAreaDiscount  用HashMap<String, Double[]> 来存 商圈，double数组下标(0下标对应值为0)表示会员等级，值表示折扣，保留两位小数
+ * @param vipLevelDiscount  
  */
 public class PromotionPO {
+	private int promotionType;
 	private String promotionID;
-	private String name;
 	private String hotelID;
-	private boolean isWeb;
+	private String promotionName;
 	private double discount;
-	private int enough;
-	private int enoughMinus;
 	private String startTime;
-	private String endTime;
-	private HashMap<Integer, Double> vipLevelDiscount;
-	private HashMap<Integer, Double> vipLocationDiscount;
+	private String endTime; 
+	private String cooperateBusiness;
+	private double[] roomsAndDiscount;
+	private HashMap<String, double[]> vipTradeAreaDiscount;
+	private double[] vipLevelDiscount;
 	
-	public PromotionPO(String promotionID,String name,String hotelID,boolean isWeb, 
-			HashMap<Integer, Double> vipLevelDiscount,HashMap<Integer, Double> vipLocationDiscount,
-			double discount, int enough, int enoughMinus, String startTime, String endTime) {
-		this.promotionID=promotionID;
-		this.name=name;
-		this.hotelID=hotelID;
-		this.isWeb=isWeb;
+	/**
+	 * @param promotionType
+	 * @param promotionID
+	 * @param hotelID
+	 * @param promotionName
+	 * @param discount
+	 * @param startTime
+	 * @param endTime
+	 * @param birthDay
+	 * @param cooperateBusiness
+	 * @param roomsAndDiscount
+	 * @param vipTradeAreaDiscount
+	 * @param vipLevelDiscount
+	 */
+	public PromotionPO(int promotionType, String promotionID, String hotelID, String promotionName,
+			double discount, String startTime, String endTime, String cooperateBusiness,
+			double[] roomsAndDiscount, HashMap<String, double[]> vipTradeAreaDiscount, double[] vipLevelDiscount) {
+		this.promotionType = promotionType;
+		this.promotionID = promotionID;
+		this.hotelID = hotelID;
+		this.promotionName = promotionName;
+		this.discount = discount;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.cooperateBusiness = cooperateBusiness;
+		this.roomsAndDiscount = roomsAndDiscount;
+		this.vipTradeAreaDiscount = vipTradeAreaDiscount;
 		this.vipLevelDiscount = vipLevelDiscount;
-		this.vipLocationDiscount = vipLocationDiscount;
+	}
+	
+	public int getPromotionType() {
+		return promotionType;
+	}
+
+	public void setPromotionType(int promotionType) {
+		this.promotionType = promotionType;
 	}
 
 	public String getPromotionID() {
@@ -49,14 +75,6 @@ public class PromotionPO {
 		this.promotionID = promotionID;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getHotelID() {
 		return hotelID;
 	}
@@ -65,35 +83,20 @@ public class PromotionPO {
 		this.hotelID = hotelID;
 	}
 
-	public boolean isWeb() {
-		return isWeb;
+	public String getPromotionName() {
+		return promotionName;
 	}
 
-	public void setWeb(boolean isWeb) {
-		this.isWeb = isWeb;
+	public void setPromotionName(String promotionName) {
+		this.promotionName = promotionName;
 	}
+
 	public double getDiscount() {
 		return discount;
 	}
 
 	public void setDiscount(double discount) {
 		this.discount = discount;
-	}
-
-	public int getEnough() {
-		return enough;
-	}
-
-	public void setEnough(int enough) {
-		this.enough = enough;
-	}
-
-	public int getEnoughMinus() {
-		return enoughMinus;
-	}
-
-	public void setEnoughMinus(int enoughMinus) {
-		this.enoughMinus = enoughMinus;
 	}
 
 	public String getStartTime() {
@@ -112,21 +115,36 @@ public class PromotionPO {
 		this.endTime = endTime;
 	}
 
-	public HashMap<Integer, Double> getVipLevelDiscount() {
+	public String getCooperateBusiness() {
+		return cooperateBusiness;
+	}
+
+	public void setCooperateBusiness(String cooperateBusiness) {
+		this.cooperateBusiness = cooperateBusiness;
+	}
+
+	public double[] getRoomsAndDiscount() {
+		return roomsAndDiscount;
+	}
+
+	public void setRoomsAndDiscount(double[] roomsAndDiscount) {
+		this.roomsAndDiscount = roomsAndDiscount;
+	}
+
+	public HashMap<String, double[]> getVipTradeAreaDiscount() {
+		return vipTradeAreaDiscount;
+	}
+
+	public void setVipTradeAreaDiscount(HashMap<String, double[]> vipTradeAreaDiscount) {
+		this.vipTradeAreaDiscount = vipTradeAreaDiscount;
+	}
+
+	public double[] getVipLevelDiscount() {
 		return vipLevelDiscount;
 	}
 
-	public void setVipLevelDiscount(HashMap<Integer, Double> vipLevelDiscount) {
+	public void setVipLevelDiscount(double[] vipLevelDiscount) {
 		this.vipLevelDiscount = vipLevelDiscount;
 	}
 
-	public HashMap<Integer, Double> getVipLocationDiscount() {
-		return vipLocationDiscount;
-	}
-
-	public void setVipLocationDiscount(HashMap<Integer, Double> vipLocationDiscount) {
-		this.vipLocationDiscount = vipLocationDiscount;
-	}
-
-	
 }

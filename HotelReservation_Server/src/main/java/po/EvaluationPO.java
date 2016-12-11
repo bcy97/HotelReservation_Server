@@ -2,44 +2,53 @@ package po;
 
 /**
  * @param orderID 订单ID
- * @param evaluation 评价信息
- * @param numberOfStars 评价星级
+ * @param commentLevel 评价星级
+ * @param evaluationContent 评价信息
  * @author bcy
  *
  */
 public class EvaluationPO {
 	
 	private String orderID;
-	private String evaluation;
-	private int numberOfStars;
-
-	public EvaluationPO(String orderID , String evaluation, int numberOfStars ) {
-		this.orderID=orderID;
-		this.evaluation=evaluation;
-		this.numberOfStars=numberOfStars;
+	private double commentLevel;
+	private String evaluationContent;
+	
+	
+	/**
+	 * @param orderID
+	 * @param commentLevel
+	 * @param evaluationContent
+	 */
+	public EvaluationPO(String orderID, double commentLevel, String evaluationContent) {
+		this.orderID = orderID;
+		this.commentLevel = commentLevel;
+		this.evaluationContent = evaluationContent;
 	}
 
 	public String getOrderID() {
 		return orderID;
 	}
-
+	
 	public void setOrderID(String orderID) {
 		this.orderID = orderID;
 	}
-
-	public String getEvaluation() {
-		return evaluation;
+	
+	public double getCommentLevel() {
+		return commentLevel;
 	}
-
-	public void setEvaluation(String evaluation) {
-		this.evaluation = evaluation;
+	
+	public void setCommentLevel(double commentLevel) {
+		this.commentLevel = commentLevel;
 	}
-
-	public int getNumberOfStars() {
-		return numberOfStars;
+	
+	public String getEvaluationContent() {
+		return evaluationContent;
 	}
-
-	public void setNumberOfStars(int numberOfStars) {
-		this.numberOfStars = numberOfStars;
+	
+	public void setEvaluationContent(String evaluationContent) {
+		this.evaluationContent = evaluationContent;
 	}
+	
+
+	
 }
