@@ -84,4 +84,90 @@ public class AccountData implements AccountDao{
 		return null;
 	}
 
+	public boolean userIDExists(String userID) {
+		String sql="select * from account where AccountID='"+userID+"'";
+		Statement statement;
+		Connection conn;
+		
+		try {
+			conn = DBConnection.getConnection();
+			statement =conn.createStatement();
+			
+			ResultSet rs=statement.executeQuery(sql);
+			if (rs.next()) {
+				statement.close();
+				conn.close();
+				
+				return true;
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return false;
+	}
+
+	public boolean hasLogin(String userID) {
+		String sql="select * from account where AccountID='"+userID+"'";
+		Statement statement;
+		Connection conn;
+		
+		try {
+			conn = DBConnection.getConnection();
+			statement =conn.createStatement();
+			
+			ResultSet rs=statement.executeQuery(sql);
+			if (rs.next()) {
+				int isLogin=rs.getInt("isLogin");
+				statement.close();
+				conn.close();
+				if (isLogin==1) {
+					return true;
+				}else {
+					return false;
+				}
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return false;
+	}
+
+	public boolean setLogout(String userID) {
+		Connection conn;
+		Statement statement;
+		String sql="update account set isLogin='"+0+"' where AccountID='"+userID+"'";
+		try {
+			conn  = DBConnection.getConnection();
+			statement = conn.createStatement();
+			statement.executeUpdate(sql);
+			statement.close();
+			conn.close();
+			
+			return true;
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return false;
+	}
+
+	public boolean setLogin(String userID) {
+		Connection conn;
+		Statement statement;
+		String sql="update account set isLogin='"+1+"' where AccountID='"+userID+"'";
+		try {
+			conn  = DBConnection.getConnection();
+			statement = conn.createStatement();
+			statement.executeUpdate(sql);
+			statement.close();
+			conn.close();
+			
+			return true;
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return false;
+	}
+
 }

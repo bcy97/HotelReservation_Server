@@ -266,5 +266,25 @@ public class DataRemoteObject extends UnicastRemoteObject
 		return null;
 	}
 
+	public boolean userIDExists(String userID) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean hasLogin(String userID) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean setLogout(String userID) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean setLogin(String userID) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 
 }
