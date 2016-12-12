@@ -14,7 +14,7 @@ public interface OrderDao extends Remote{
 	
 	public OrderPO getOrderByOrderID(String orderID);
 	
-	public boolean addEvalution(EvaluationPO po);
+	public boolean addEvaluation(EvaluationPO po);
 	
 	public EvaluationPO getEvaluationByOrderID(String orderID);
 	

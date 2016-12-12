@@ -141,7 +141,7 @@ public class DataRemoteObject extends UnicastRemoteObject
 		return null;
 	}
 
-	public boolean addEvalution(EvaluationPO po) {
+	public boolean addEvaluation(EvaluationPO po) {
 		// TODO Auto-generated method stub
 		return false;
 	}
