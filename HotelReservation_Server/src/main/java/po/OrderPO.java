@@ -18,9 +18,10 @@ import java.util.ArrayList;
  * @param afterPromotionPrice 促销后价格
  * @param promotionNum 使用的促销策略的数量
  * @param promotionIDs 该订单使用的促销策略
- * @param executedTime 订单执行的时间 格式yyyy-MM-dd HH:mm:ss
- * @param undoAbnormalTime 订单撤销的时间 格式yyyy-MM-dd HH:mm:ss
- * @param abnormalTime 订单被置为异常的时间 格式yyyy-MM-dd HH:mm:ss	
+ * @param executedTime 订单执行的时间 格式yyyy/MM/dd HH:mm:ss
+ * @param undoAbnormalTime 异常订单撤销的时间 格式yyyy/MM/dd HH:mm:ss
+ * @param abnormalTime 订单被置为异常的时间 格式yyyy/MM/dd HH:mm:ss	
+ * @param undoUnexecutedTime 未执行订单被置为异常的时间 格式yyyy/MM/dd HH:mm:ss	
  * @author Mark.W
  */
 public class OrderPO {
@@ -39,15 +40,15 @@ public class OrderPO {
 	private int promotionNum;
 	private ArrayList<String> promotionIDs;
 	private String executedTime; //订单执行的时间
-	private String undoAbnormalTime;	//订单撤销的时间
+	private String undoAbnormalTime;	//异常订单撤销的时间
 	private String abnormalTime;	//订单被置为异常的时间
-
+	private String undoUnexecutedTime;	//未执行订单被用户置为异常的时间
 
 	public OrderPO(String userID, String orderID,String hotelId, String startTime, String endTime,
 			int roomNum, ArrayList<String> roomIDs,boolean hasChild, int numberOfPeople, int state,
 			double beforePromotionPrice, double afterPromotionPrice, int promotionNum, 
-			ArrayList<String> promotionIDs,
-			String executedTime, String undoAbnormalTime, String abnormalTime) {
+			ArrayList<String> promotionIDs, String executedTime, String undoAbnormalTime, 
+			String abnormalTime, String undoUnexecutedTime) {
 		this.uesrID = userID;
 		this.orderID=orderID;
 		this.startTime=startTime;
@@ -65,176 +66,161 @@ public class OrderPO {
 		this.executedTime = executedTime;
 		this.undoAbnormalTime = undoAbnormalTime;
 		this.abnormalTime = abnormalTime;
+		this.undoUnexecutedTime = undoUnexecutedTime;
 	}
-
-
+	
 	public String getUesrID() {
 		return uesrID;
 	}
-
 
 	public void setUesrID(String uesrID) {
 		this.uesrID = uesrID;
 	}
 
+	
+	public ArrayList<String> getRoomIDs() {
+		return roomIDs;
+	}
 
+	public void setRoomIDs(ArrayList<String> roomIDs) {
+		this.roomIDs = roomIDs;
+	}
+	
 	public String getOrderID() {
 		return orderID;
 	}
-
 
 	public void setOrderID(String orderID) {
 		this.orderID = orderID;
 	}
 
-
-	public String getHotelId() {
-		return hotelId;
-	}
-
-
-	public void setHotelId(String hotelId) {
-		this.hotelId = hotelId;
-	}
-
-
 	public String getStartTime() {
 		return startTime;
 	}
-
 
 	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
 
+	public String getHotelId() {
+		return hotelId;
+	}
+
+	public void setHotelId(String hotelId) {
+		this.hotelId = hotelId;
+	}
 
 	public String getEndTime() {
 		return endTime;
 	}
 
-
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
-
-
-	public int getRoomNum() {
-		return roomNum;
-	}
-
-
-	public void setRoomNum(int roomNum) {
-		this.roomNum = roomNum;
-	}
-
-
-	public ArrayList<String> getRoomIDs() {
-		return roomIDs;
-	}
-
-
-	public void setRoomIDs(ArrayList<String> roomIDs) {
-		this.roomIDs = roomIDs;
-	}
-
 
 	public boolean isHasChild() {
 		return hasChild;
 	}
 
-
 	public void setHasChild(boolean hasChild) {
 		this.hasChild = hasChild;
 	}
-
 
 	public int getNumberOfPeople() {
 		return numberOfPeople;
 	}
 
-
 	public void setNumberOfPeople(int numberOfPeople) {
 		this.numberOfPeople = numberOfPeople;
 	}
-
 
 	public int getState() {
 		return state;
 	}
 
-
 	public void setState(int state) {
-		this.state = state;
+		this.state = state;;
 	}
-
-
+	
 	public double getBeforePromotionPrice() {
 		return beforePromotionPrice;
 	}
 
-
 	public void setBeforePromotionPrice(double beforePromotionPrice) {
 		this.beforePromotionPrice = beforePromotionPrice;
 	}
-
+	
 
 	public double getAfterPromotionPrice() {
 		return afterPromotionPrice;
 	}
 
-
 	public void setAfterPromotionPrice(double afterPromotionPrice) {
 		this.afterPromotionPrice = afterPromotionPrice;
 	}
 
-
-	public int getPromotionNum() {
-		return promotionNum;
-	}
-
-
-	public void setPromotionNum(int promotionNum) {
-		this.promotionNum = promotionNum;
-	}
-
-
-	public ArrayList<String> getPromotionIDs() {
+	public ArrayList<String> getPromotions() {
 		return promotionIDs;
 	}
 
+	public void setPromotions(ArrayList<String> promotions) {
+		this.promotionIDs = promotions;
+	}
+	
+	public ArrayList<String> getPromotionIDs() {
+		return promotionIDs;
+	}
 
 	public void setPromotionIDs(ArrayList<String> promotionIDs) {
 		this.promotionIDs = promotionIDs;
 	}
 
-
 	public String getExecutedTime() {
 		return executedTime;
 	}
-
 
 	public void setExecutedTime(String executedTime) {
 		this.executedTime = executedTime;
 	}
 
-
 	public String getUndoAbnormalTime() {
 		return undoAbnormalTime;
 	}
 
-
 	public void setUndoAbnormalTime(String undoAbnormalTime) {
 		this.undoAbnormalTime = undoAbnormalTime;
 	}
-
-
+	
 	public String getAbnormalTime() {
 		return abnormalTime;
 	}
-
 
 	public void setAbnormalTime(String abnormalTime) {
 		this.abnormalTime = abnormalTime;
 	}
 	
+	public int getRoomNum() {
+		return roomNum;
+	}
+
+	public void setRoomNum(int roomNum) {
+		this.roomNum = roomNum;
+	}
+
+	public int getPromotionNum() {
+		return promotionNum;
+	}
+
+	public void setPromotionNum(int promotionNum) {
+		this.promotionNum = promotionNum;
+	}
+
+	public String getUndoUnexecutedTime() {
+		return undoUnexecutedTime;
+	}
+
+	public void setUndoUnexecutedTime(String undoUnexecutedTime) {
+		this.undoUnexecutedTime = undoUnexecutedTime;
+	}
+
 }

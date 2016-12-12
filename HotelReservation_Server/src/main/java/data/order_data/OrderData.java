@@ -82,20 +82,25 @@ public class OrderData implements OrderDao{
 		}
 		
 		//处理最后三个可能为null的参数
-		if ((orderPO.getExecutedTime()==null||orderPO.getExecutedTime()=="")
-				&&(orderPO.getUndoAbnormalTime()==null||orderPO.getUndoAbnormalTime()=="")
-				&&(orderPO.getAbnormalTime()==null||orderPO.getAbnormalTime()=="")) {
-			sql = sql+",null,null,null)";
+		if (orderPO.getExecutedTime()!=null&&orderPO.getExecutedTime()!="") {
+			sql = sql+",'"+orderPO.getExecutedTime()+"'";
+		}else{
+			sql = sql+",null";
+		}
+		if (orderPO.getUndoAbnormalTime()!=null&&orderPO.getUndoAbnormalTime()!="") {
+			sql = sql+",'"+orderPO.getUndoAbnormalTime()+"'";
 		}else {
-			if (orderPO.getExecutedTime()!=null&&orderPO.getExecutedTime()!="") {
-				sql = sql+",'"+orderPO.getExecutedTime()+"',null,null)";
-			}
-			if (orderPO.getUndoAbnormalTime()!=null&&orderPO.getUndoAbnormalTime()!="") {
-				sql = sql+",null,'"+orderPO.getUndoAbnormalTime()+"',null)";
-			}
-			if (orderPO.getAbnormalTime()!=null&&orderPO.getAbnormalTime()!="") {
-				sql = sql+",null,null,'"+orderPO.getAbnormalTime()+"')";
-			}
+			sql = sql+",null";
+		}
+		if (orderPO.getAbnormalTime()!=null&&orderPO.getAbnormalTime()!="") {
+			sql = sql+",'"+orderPO.getAbnormalTime()+"'";
+		}else {
+			sql = sql+",null";
+		}
+		if (orderPO.getUndoUnexecutedTime()!=null&&orderPO.getUndoUnexecutedTime()!="") {
+			sql = sql +",'"+orderPO.getUndoUnexecutedTime()+"')";
+		}else {
+			sql = sql+",null)";
 		}
 		//获得完整的sql指令
 		
@@ -168,7 +173,7 @@ public class OrderData implements OrderDao{
 			ResultSet rs=statement.executeQuery(sql);
 			
 			if (rs.next()) {
-				orderPO = new OrderPO(null, null, null, null, null, 0, null, false, 0, 0, 0, 0, 0, null, null, null, null);
+				orderPO = new OrderPO(null, null, null, null, null, 0, null, false, 0, 0, 0, 0, 0, null, null, null, null,null);
 				orderPO.setUesrID(rs.getString("userID"));
 				orderPO.setOrderID(orderID);
 				orderPO.setHotelId(rs.getString("hotelID"));
