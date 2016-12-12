@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import data.database.DBConnection;
 import dataDao.CreditDao;
@@ -74,6 +75,8 @@ public class CreditData implements CreditDao{
 			statement.close();
 			conn.close();
 			
+			Collections.reverse(creditHistory);
+			
 			return creditHistory;
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -83,17 +86,53 @@ public class CreditData implements CreditDao{
 
 	public int getCredit(String userID) {
 		ArrayList<CreditHistoryPO> creditHistory = getCreditHistory(userID);
-		return creditHistory.get(creditHistory.size()-1).getNowCredit();
+		return creditHistory.get(0).getNowCredit();
 	}
 
 	public boolean setVIPCredit(int level, int credit_num) {
-		// TODO Auto-generated method stub
+		String sql="insert into vipcredit values("+level+","+credit_num+")";
+		Statement statement;
+		Connection conn;
+		
+		try {
+			conn = DBConnection.getConnection();
+			statement =conn.createStatement();
+			
+			statement.executeUpdate(sql);
+			
+			statement.close();
+			conn.close();
+			
+			return true;
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
 		return false;
 	}
 
 	public int getVIPCredit(int level) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql="select * from vipcredit where vipLevel="+level;
+		Statement statement;
+		Connection conn;
+		
+		try {
+			conn = DBConnection.getConnection();
+			statement =conn.createStatement();
+			
+			ResultSet rs = statement.executeQuery(sql);
+			
+			if (rs.next()) {
+				int vipLevelCredit = rs.getInt("vipLevelCredit");
+				statement.close();
+				conn.close();
+				return vipLevelCredit;
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return 0;	
+	
 	}
 
 }
