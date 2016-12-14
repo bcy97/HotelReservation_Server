@@ -39,7 +39,7 @@ public class OrderListData implements OrderListDao{
 			ResultSet rs=statement.executeQuery(sql);
 			
 			while (rs.next()) {
-				OrderPO orderPO = new OrderPO(null, null, null, null, null, 0, null, false, 0, 0, 0, 0, 0, null, null, null, null);
+				OrderPO orderPO = new OrderPO(null, null, null, null, null, 0, null, false, 0, 0, 0, 0, 0, null, null, null, null,null);
 				orderPO.setUesrID(rs.getString("userID"));
 				orderPO.setOrderID(rs.getString("orderID"));
 				orderPO.setHotelId(rs.getString("hotelID"));
