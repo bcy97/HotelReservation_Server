@@ -1,4 +1,4 @@
-package dataDao;
+package dataDao.account;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

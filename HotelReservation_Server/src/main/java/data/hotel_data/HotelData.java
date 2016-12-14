@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import data.database.DBConnection;
-import dataDao.HotelDao;
+import dataDao.hotel.HotelDao;
 import po.HotelPO;
 
 public class HotelData implements HotelDao{

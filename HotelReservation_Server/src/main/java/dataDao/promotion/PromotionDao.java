@@ -1,4 +1,4 @@
-package dataDao;
+package dataDao.promotion;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

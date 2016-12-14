@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import data.database.DBConnection;
-import dataDao.PromotionDao;
+import dataDao.promotion.PromotionDao;
 import po.PromotionPO;
 
 public class PromotionData implements PromotionDao{
