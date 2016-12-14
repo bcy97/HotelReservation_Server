@@ -1,5 +1,6 @@
 package po;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -21,7 +22,7 @@ import java.util.HashMap;
  * @author Mark.W
  *
  */
-public class HotelPO {
+public class HotelPO implements Serializable{
 
 	private String hoteID;
 	private String hotelName;

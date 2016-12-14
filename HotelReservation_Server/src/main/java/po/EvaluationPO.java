@@ -1,5 +1,7 @@
 package po;
 
+import java.io.Serializable;
+
 /**
  * @param orderID 订单ID
  * @param commentLevel 评价星级
@@ -7,7 +9,7 @@ package po;
  * @author bcy
  *
  */
-public class EvaluationPO {
+public class EvaluationPO implements Serializable{
 	
 	private String orderID;
 	private double commentLevel;

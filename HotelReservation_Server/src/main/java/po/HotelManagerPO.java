@@ -1,5 +1,7 @@
 package po;
 
+import java.io.Serializable;
+
 /**
  * 
  * @param numberOfUser 酒店管理人员号
@@ -8,7 +10,7 @@ package po;
  * @param trueName    	真实姓名
  * @param numberOfIdentityCard    身份证号
  */
-public class HotelManagerPO {
+public class HotelManagerPO implements Serializable{
 	private String hotelID;
 	private String phoneNumber;
 	private String trueName;

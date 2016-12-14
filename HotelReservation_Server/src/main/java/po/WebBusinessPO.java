@@ -1,4 +1,7 @@
 package po;
+
+import java.io.Serializable;
+
 /**
  * @param userID 用户ID
  * @param trueName 真实姓名
@@ -7,7 +10,7 @@ package po;
  * @author bcy
  *
  */
-public class WebBusinessPO {
+public class WebBusinessPO implements Serializable{
 	
 	private String userID;
 	private String trueName;

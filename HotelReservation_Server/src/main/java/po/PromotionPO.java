@@ -1,5 +1,6 @@
 package po;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 /**
@@ -16,7 +17,7 @@ import java.util.HashMap;
  * @param vipTradeAreaDiscount  用HashMap<String, Double[]> 来存 商圈，double数组下标(0下标对应值为0)表示会员等级，值表示折扣，保留两位小数
  * @param vipLevelDiscount  
  */
-public class PromotionPO {
+public class PromotionPO implements Serializable{
 	private int promotionType;
 	private String promotionID;
 	private String hotelID;

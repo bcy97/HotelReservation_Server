@@ -1,5 +1,6 @@
 package po;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -11,7 +12,7 @@ import java.util.ArrayList;
  * @param isEmpty
  * @param pictures
  */
-public class RoomPO {
+public class RoomPO implements Serializable{
 
 	private String hotelId;
 	private String roomId;

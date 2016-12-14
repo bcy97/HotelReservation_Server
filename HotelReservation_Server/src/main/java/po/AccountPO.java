@@ -1,5 +1,7 @@
 package po;
 
+import java.io.Serializable;
+
 /**
  * @param account 帐号ID
  * @param password  密码
@@ -7,7 +9,7 @@ package po;
  * @author bcy
  *
  */
-public class AccountPO {
+public class AccountPO implements Serializable{
 	private String account;
 	private String password;
 	private int identity;

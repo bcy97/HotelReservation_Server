@@ -1,5 +1,6 @@
 package po;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -24,7 +25,7 @@ import java.util.ArrayList;
  * @param undoUnexecutedTime 未执行订单被置为异常的时间 格式yyyy/MM/dd HH:mm:ss	
  * @author Mark.W
  */
-public class OrderPO {
+public class OrderPO implements Serializable{
 	private String uesrID;
 	private String orderID;
 	private String hotelId;

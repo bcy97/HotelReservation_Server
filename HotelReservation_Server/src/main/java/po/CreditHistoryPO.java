@@ -1,5 +1,7 @@
 package po;
 
+import java.io.Serializable;
+
 /**
  * @param userID 用户ID
  * @param time 信用修改时间
@@ -10,7 +12,7 @@ package po;
  * @author bcy
  *
  */
-public class CreditHistoryPO {
+public class CreditHistoryPO implements Serializable{
 	
 	private String userID;
 	private String time;

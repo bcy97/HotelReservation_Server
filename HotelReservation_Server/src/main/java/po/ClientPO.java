@@ -1,5 +1,7 @@
 package po;
 
+import java.io.Serializable;
+
 /**
  * @param userID 用户id
  * @param phoneNumber 电话
@@ -12,7 +14,7 @@ package po;
  * @author bcy
  *
  */
-public class ClientPO {
+public class ClientPO implements Serializable{
 	
 	private String userID;
 	private String phoneNumber;
