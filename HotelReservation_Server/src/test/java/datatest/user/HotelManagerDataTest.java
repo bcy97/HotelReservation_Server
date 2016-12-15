@@ -1,4 +1,4 @@
-package data.user_data;
+package datatest.user;
 
 import po.HotelManagerPO;
 

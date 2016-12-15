@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * @param startTime 开始时间
  * @param endTime 结束时间
  * @param roomNum 酒店房间数量
- * @param roomID 酒店房间号
+ * @param roomType 房间类型
  * @param numberOfRooms  房间数量
  * @param hasChild  是否有小孩
  * @param numberOfPeople  入住人数
@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * @param beforePromotionPrice 促销前价格
  * @param afterPromotionPrice 促销后价格
  * @param promotionNum 使用的促销策略的数量
- * @param promotionIDs 该订单使用的促销策略
+ * @param promotionID 该订单使用的促销策略
  * @param executedTime 订单执行的时间 格式yyyy/MM/dd HH:mm:ss
  * @param undoAbnormalTime 异常订单撤销的时间 格式yyyy/MM/dd HH:mm:ss
  * @param abnormalTime 订单被置为异常的时间 格式yyyy/MM/dd HH:mm:ss	
@@ -32,44 +32,63 @@ public class OrderPO implements Serializable{
 	private String startTime;
 	private String endTime;
 	private int roomNum;
-	private ArrayList<String> roomIDs;
+	private int roomType;
 	private boolean hasChild;
 	private int numberOfPeople;
 	private int state; 
 	private double beforePromotionPrice;
 	private double afterPromotionPrice;
-	private int promotionNum;
-	private ArrayList<String> promotionIDs;
+	private String promotionID;
 	private String executedTime; //订单执行的时间
 	private String undoAbnormalTime;	//异常订单撤销的时间
 	private String abnormalTime;	//订单被置为异常的时间
 	private String undoUnexecutedTime;	//未执行订单被用户置为异常的时间
 
-	public OrderPO(String userID, String orderID,String hotelId, String startTime, String endTime,
-			int roomNum, ArrayList<String> roomIDs,boolean hasChild, int numberOfPeople, int state,
-			double beforePromotionPrice, double afterPromotionPrice, int promotionNum, 
-			ArrayList<String> promotionIDs, String executedTime, String undoAbnormalTime, 
-			String abnormalTime, String undoUnexecutedTime) {
-		this.uesrID = userID;
-		this.orderID=orderID;
-		this.startTime=startTime;
-		this.hotelId=hotelId;
+
+	/**
+	 * @param uesrID
+	 * @param orderID
+	 * @param hotelId
+	 * @param startTime
+	 * @param endTime
+	 * @param roomNum
+	 * @param roomType
+	 * @param hasChild
+	 * @param numberOfPeople
+	 * @param state
+	 * @param beforePromotionPrice
+	 * @param afterPromotionPrice
+	 * @param promotionNum
+	 * @param promotionID
+	 * @param executedTime
+	 * @param undoAbnormalTime
+	 * @param abnormalTime
+	 * @param undoUnexecutedTime
+	 */
+	public OrderPO(String uesrID, String orderID, String hotelId, String startTime, String endTime, int roomNum,
+			int roomType, boolean hasChild, int numberOfPeople, int state, double beforePromotionPrice,
+			double afterPromotionPrice, String promotionID, String executedTime,
+			String undoAbnormalTime, String abnormalTime, String undoUnexecutedTime) {
+		super();
+		this.uesrID = uesrID;
+		this.orderID = orderID;
+		this.hotelId = hotelId;
+		this.startTime = startTime;
+		this.endTime = endTime;
 		this.roomNum = roomNum;
-		this.roomIDs = roomIDs;
-		this.endTime=endTime;
-		this.hasChild=hasChild;
-		this.numberOfPeople=numberOfPeople;
+		this.roomType = roomType;
+		this.hasChild = hasChild;
+		this.numberOfPeople = numberOfPeople;
 		this.state = state;
 		this.beforePromotionPrice = beforePromotionPrice;
 		this.afterPromotionPrice = afterPromotionPrice;
-		this.promotionNum = promotionNum;
-		this.promotionIDs = promotionIDs;
+		this.promotionID = promotionID;
 		this.executedTime = executedTime;
 		this.undoAbnormalTime = undoAbnormalTime;
 		this.abnormalTime = abnormalTime;
 		this.undoUnexecutedTime = undoUnexecutedTime;
 	}
-	
+
 	public String getUesrID() {
 		return uesrID;
 	}
@@ -78,29 +97,12 @@ public class OrderPO implements Serializable{
 		this.uesrID = uesrID;
 	}
 
-	
-	public ArrayList<String> getRoomIDs() {
-		return roomIDs;
-	}
-
-	public void setRoomIDs(ArrayList<String> roomIDs) {
-		this.roomIDs = roomIDs;
-	}
-	
 	public String getOrderID() {
 		return orderID;
 	}
 
 	public void setOrderID(String orderID) {
 		this.orderID = orderID;
-	}
-
-	public String getStartTime() {
-		return startTime;
-	}
-
-	public void setStartTime(String startTime) {
-		this.startTime = startTime;
 	}
 
 	public String getHotelId() {
@@ -111,12 +113,36 @@ public class OrderPO implements Serializable{
 		this.hotelId = hotelId;
 	}
 
+	public String getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+
 	public String getEndTime() {
 		return endTime;
 	}
 
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
+	}
+
+	public int getRoomNum() {
+		return roomNum;
+	}
+
+	public void setRoomNum(int roomNum) {
+		this.roomNum = roomNum;
+	}
+
+	public int getRoomType() {
+		return roomType;
+	}
+
+	public void setRoomType(int roomType) {
+		this.roomType = roomType;
 	}
 
 	public boolean isHasChild() {
@@ -140,9 +166,9 @@ public class OrderPO implements Serializable{
 	}
 
 	public void setState(int state) {
-		this.state = state;;
+		this.state = state;
 	}
-	
+
 	public double getBeforePromotionPrice() {
 		return beforePromotionPrice;
 	}
@@ -150,7 +176,6 @@ public class OrderPO implements Serializable{
 	public void setBeforePromotionPrice(double beforePromotionPrice) {
 		this.beforePromotionPrice = beforePromotionPrice;
 	}
-	
 
 	public double getAfterPromotionPrice() {
 		return afterPromotionPrice;
@@ -159,21 +184,13 @@ public class OrderPO implements Serializable{
 	public void setAfterPromotionPrice(double afterPromotionPrice) {
 		this.afterPromotionPrice = afterPromotionPrice;
 	}
-
-	public ArrayList<String> getPromotions() {
-		return promotionIDs;
-	}
-
-	public void setPromotions(ArrayList<String> promotions) {
-		this.promotionIDs = promotions;
-	}
 	
-	public ArrayList<String> getPromotionIDs() {
-		return promotionIDs;
+	public String getPromotionID() {
+		return promotionID;
 	}
 
-	public void setPromotionIDs(ArrayList<String> promotionIDs) {
-		this.promotionIDs = promotionIDs;
+	public void setPromotionID(String promotionID) {
+		this.promotionID = promotionID;
 	}
 
 	public String getExecutedTime() {
@@ -191,29 +208,13 @@ public class OrderPO implements Serializable{
 	public void setUndoAbnormalTime(String undoAbnormalTime) {
 		this.undoAbnormalTime = undoAbnormalTime;
 	}
-	
+
 	public String getAbnormalTime() {
 		return abnormalTime;
 	}
 
 	public void setAbnormalTime(String abnormalTime) {
 		this.abnormalTime = abnormalTime;
-	}
-	
-	public int getRoomNum() {
-		return roomNum;
-	}
-
-	public void setRoomNum(int roomNum) {
-		this.roomNum = roomNum;
-	}
-
-	public int getPromotionNum() {
-		return promotionNum;
-	}
-
-	public void setPromotionNum(int promotionNum) {
-		this.promotionNum = promotionNum;
 	}
 
 	public String getUndoUnexecutedTime() {
@@ -223,5 +224,6 @@ public class OrderPO implements Serializable{
 	public void setUndoUnexecutedTime(String undoUnexecutedTime) {
 		this.undoUnexecutedTime = undoUnexecutedTime;
 	}
+	
 
 }

@@ -1,5 +1,6 @@
 package data.promotion_data;
 
+import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -298,6 +299,29 @@ public class PromotionData implements PromotionDao{
 			System.out.println(e.getMessage());
 		}
 		return null;
+	}
+
+	public int getPromotinoNum(){
+		String sql = "select count(*) from promotion";
+		Connection conn;
+		Statement statement;
+		try {
+			int count=0;
+			conn = DBConnection.getConnection();
+			statement = conn.createStatement();
+			ResultSet rs = statement.executeQuery(sql);
+			
+			if (rs.next()) {
+				count = rs.getInt("count(*)");
+			}
+			statement.close();
+			conn.close();
+			return count;
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return 0;
 	}
 	
 }

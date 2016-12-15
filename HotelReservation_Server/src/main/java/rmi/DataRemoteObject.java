@@ -241,5 +241,13 @@ public class DataRemoteObject extends UnicastRemoteObject
 		return accountDao.setLogin(userID);
 	}
 
+	public int getPromotinoNum() throws RemoteException {
+		return promotionDao.getPromotinoNum();
+	}
+
+	public int getOrderNum() throws RemoteException{
+		return orderDao.getOrderNum();
+	}
+
 
 }

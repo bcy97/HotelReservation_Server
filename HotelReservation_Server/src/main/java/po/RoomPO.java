@@ -1,7 +1,7 @@
 package po;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 
 /**
@@ -9,8 +9,7 @@ import java.util.ArrayList;
  * @param roomId
  * @param roomType
  * @param price 小数点保留两位
- * @param isEmpty
- * @param pictures
+ * @param notEmptyTime 保存房间不空闲的时间 key-value分别对应开始时间和结束时间，形式如“YYYY-MM-DD 12:00:00”
  */
 public class RoomPO implements Serializable{
 
@@ -18,17 +17,23 @@ public class RoomPO implements Serializable{
 	private String roomId;
 	private int roomType; 
 	private double price;
-	private boolean isEmpty;
-	private ArrayList<String> pictures;
+	private HashMap<String, String> notEmptyTime;
 	
-	public RoomPO(String hotelId, String roomId, int roomType, double price, boolean isEmpty,
-			ArrayList<String> pictures) {
+
+	/**
+	 * @param hotelId
+	 * @param roomId
+	 * @param roomType
+	 * @param price 小数点保留两位
+	 * @param notEmptyTime 保存房间不空闲的时间 key-value分别对应开始时间和结束时间，形式如“YYYY-MM-DD 12:00:00”
+s	 */
+	public RoomPO(String hotelId, String roomId, int roomType, double price, 
+			HashMap<String, String> notEmptyTime) {
 		this.hotelId = hotelId;
 		this.roomId = roomId;
 		this.roomType = roomType;
 		this.price = price;
-		this.isEmpty = isEmpty;
-		this.pictures = pictures;
+		this.notEmptyTime = notEmptyTime;
 	}
 
 	public String getHotelId() {
@@ -63,20 +68,12 @@ public class RoomPO implements Serializable{
 		this.price = price;
 	}
 
-	public boolean isEmpty() {
-		return isEmpty;
+	public HashMap<String, String> getNotEmptyTime() {
+		return notEmptyTime;
 	}
 
-	public void setEmpty(boolean isEmpty) {
-		this.isEmpty = isEmpty;
-	}
-
-	public ArrayList<String> getPictures() {
-		return pictures;
-	}
-
-	public void setPictures(ArrayList<String> pictures) {
-		this.pictures = pictures;
+	public void setNotEmptyTime(HashMap<String, String> notEmptyTime) {
+		this.notEmptyTime = notEmptyTime;
 	}
 	
 }

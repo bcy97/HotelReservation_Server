@@ -1,5 +1,6 @@
 package data.order_data;
 
+import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -38,7 +39,7 @@ public class OrderData implements OrderDao{
 	public boolean addOrder(OrderPO orderPO) {
 		if(orderPO==null||orderPO.getUesrID()==null||orderPO.getUesrID()==""||orderPO.getOrderID()==null||orderPO.getOrderID()==""
 			||orderPO.getHotelId()==null||orderPO.getHotelId()==""||orderPO.getStartTime()==null||orderPO.getStartTime()==""
-				||orderPO.getEndTime()==null||orderPO.getEndTime()==""||orderPO.getRoomIDs()==null){
+				||orderPO.getEndTime()==null||orderPO.getEndTime()==""){
 			System.out.println("data.order_data.OrderData.addOrder参数异常");
 			return false;
 		}
@@ -48,16 +49,9 @@ public class OrderData implements OrderDao{
 		}
 		Connection conn;
 		Statement statement;
-		String empty;
 		String sql = "insert into orders values('" +
 				orderPO.getUesrID() + "','" + orderPO.getOrderID() +"','"+orderPO.getHotelId()+"','"+
 				orderPO.getStartTime()+"','"+orderPO.getEndTime()+"','"+orderPO.getRoomNum();
-		
-		//处理roomID的ArrayList
-		String rooms = "";
-		for (String  roomID : orderPO.getRoomIDs()) {
-			rooms+=roomID+"###";
-		}
 		
 		//处理double是否有小孩
 		String hasChild = "";
@@ -66,20 +60,9 @@ public class OrderData implements OrderDao{
 		}else {
 			hasChild = "0";
 		}
-		sql = sql+"','"+rooms+"','"+hasChild+"','"+orderPO.getNumberOfPeople()+"','"+
+		sql = sql+"','"+hasChild+"','"+orderPO.getNumberOfPeople()+"','"+
 				orderPO.getState()+"','"+orderPO.getBeforePromotionPrice()+"','"+
-				orderPO.getAfterPromotionPrice()+"','"+orderPO.getPromotionNum();
-		
-		//处理promotionIDs的ArrayList
-		String promotion = "";
-		if (orderPO.getPromotionNum()!=0) {
-			for (String promotionID : orderPO.getPromotionIDs()) {
-				promotion += promotionID+"###";
-			}
-			sql = sql+"','"+promotion;
-		}else {
-			sql = sql+"',null";
-		}
+				orderPO.getAfterPromotionPrice()+"'";
 		
 		//处理最后三个可能为null的参数
 		if (orderPO.getExecutedTime()!=null&&orderPO.getExecutedTime()!="") {
@@ -98,10 +81,11 @@ public class OrderData implements OrderDao{
 			sql = sql+",null";
 		}
 		if (orderPO.getUndoUnexecutedTime()!=null&&orderPO.getUndoUnexecutedTime()!="") {
-			sql = sql +",'"+orderPO.getUndoUnexecutedTime()+"')";
+			sql = sql +",'"+orderPO.getUndoUnexecutedTime()+"'";
 		}else {
-			sql = sql+",null)";
+			sql = sql+",null";
 		}
+		sql = sql+",'"+orderPO.getRoomType()+"','"+orderPO.getPromotionID()+"')";
 		//获得完整的sql指令
 		
 		try {
@@ -122,7 +106,7 @@ public class OrderData implements OrderDao{
 	public boolean updateOrder(OrderPO orderPO) {
 		if(orderPO==null||orderPO.getUesrID()==null||orderPO.getUesrID()==""||orderPO.getOrderID()==null||orderPO.getOrderID()==""
 				||orderPO.getHotelId()==null||orderPO.getHotelId()==""||orderPO.getStartTime()==null||orderPO.getStartTime()==""
-				||orderPO.getEndTime()==null||orderPO.getEndTime()==""||orderPO.getRoomIDs()==null){
+				||orderPO.getEndTime()==null||orderPO.getEndTime()==""){
 			System.out.println("data.order_data.OrderData.addOrder参数异常");
 			return false;
 		}
@@ -173,44 +157,25 @@ public class OrderData implements OrderDao{
 			ResultSet rs=statement.executeQuery(sql);
 			
 			if (rs.next()) {
-				orderPO = new OrderPO(null, null, null, null, null, 0, null, false, 0, 0, 0, 0, 0, null, null, null, null,null);
+				orderPO = new OrderPO(null, null, null, null, null, 0, 0, false, 0, 0, 0, 0, null, null, null, null,null);
 				orderPO.setUesrID(rs.getString("userID"));
 				orderPO.setOrderID(orderID);
 				orderPO.setHotelId(rs.getString("hotelID"));
 				orderPO.setStartTime(rs.getString("startTime"));
 				orderPO.setEndTime(rs.getString("endTime"));
 				orderPO.setRoomNum(rs.getInt("roomNum"));
-				
-				//处理roomID的ArrayList
-				String[] roomIds = rs.getString("roomIDs").split("###");
-				ArrayList<String> roomIDs = new ArrayList<String>();
-				for(int i = 0 ; i < orderPO.getRoomNum() ; i++){
-					roomIDs.add(roomIds[i]);
-				}
-				orderPO.setRoomIDs(roomIDs);
-				
+				orderPO.setRoomType(rs.getInt("roomType"));
 				orderPO.setHasChild(rs.getInt("hasChild")==1);
 				orderPO.setNumberOfPeople(rs.getInt("numberOfPeople"));
 				orderPO.setState(rs.getInt("state"));
 				orderPO.setBeforePromotionPrice(rs.getDouble("beforPromotionPrice"));
 				orderPO.setAfterPromotionPrice(rs.getDouble("afterPromotionPrice"));
-				orderPO.setPromotionNum(rs.getInt("promotionNum"));
-				
-				//处理promtoinIDs的ArrayList
-				if (orderPO.getPromotionNum()!=0) {
-					String [] promotions = rs.getString("promtoinIDs").split("###");
-					ArrayList<String> promotionIDs = new ArrayList<String>();
-					for (String promtoinID : promotions) {
-						promotionIDs.add(promtoinID);
-					}
-					orderPO.setPromotionIDs(promotionIDs);
-				}else {
-					orderPO.setPromotionIDs(null);
-				}
+				orderPO.setPromotionID(rs.getString("promotionID"));
 				
 				orderPO.setExecutedTime(rs.getString("executedTime"));
 				orderPO.setUndoAbnormalTime(rs.getString("undoAbnormalTime"));
 				orderPO.setAbnormalTime(rs.getString("abnormalTime"));
+				orderPO.setUndoUnexecutedTime(rs.getString("undoUnexecutedTime"));
 				
 				statement.close();
 				conn.close();
@@ -314,6 +279,29 @@ public class OrderData implements OrderDao{
 		return null;
 	}
 
+	public int getOrderNum(){
+		String sql = "select count(*) from orders";
+		Connection conn;
+		Statement statement;
+		try {
+			int count=0;
+			conn = DBConnection.getConnection();
+			statement = conn.createStatement();
+			ResultSet rs = statement.executeQuery(sql);
+			
+			if (rs.next()) {
+				count = rs.getInt("count(*)");
+			}
+			statement.close();
+			conn.close();
+			return count;
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return 0;
+	}
+	
 	private ArrayList<String> getHotelOrderID(String hotelID) {
 		
 		ArrayList<String> orderIDs;
@@ -339,4 +327,5 @@ public class OrderData implements OrderDao{
 		}
 		return null;
 	}
+	
 }

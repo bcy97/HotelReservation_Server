@@ -1,4 +1,4 @@
-package data.credit_data;
+package datatest.credit;
 
 import java.util.ArrayList;
 
