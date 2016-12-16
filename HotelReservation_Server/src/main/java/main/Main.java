@@ -8,7 +8,6 @@ import java.rmi.server.UnicastRemoteObject;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import rmi.RemoteHelper;
 
@@ -20,7 +19,6 @@ public class Main {
 		try {
 			System.out.println(UnicastRemoteObject.exportObject(new Remote(){},0));
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -28,6 +26,7 @@ public class Main {
 	public void createFrame() {
 		JFrame mainFrame = new JFrame("HotelServer");
 		JButton button = new JButton("start");
+		
 		button.addActionListener(new ButtonActionListener());
 		mainFrame.getContentPane().add(button);
 		
