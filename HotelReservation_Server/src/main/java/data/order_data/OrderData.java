@@ -64,12 +64,7 @@ public class OrderData implements OrderDao{
 				orderPO.getState()+"','"+orderPO.getBeforePromotionPrice()+"','"+
 				orderPO.getAfterPromotionPrice()+"'";
 		
-		//处理最后三个可能为null的参数
-		if (orderPO.getExecutedTime()!=null&&orderPO.getExecutedTime()!="") {
-			sql = sql+",'"+orderPO.getExecutedTime()+"'";
-		}else{
-			sql = sql+",null";
-		}
+		//处理undoAbnormalTime/abnormalTime/undoUnexecutedTime可能为null的参数
 		if (orderPO.getUndoAbnormalTime()!=null&&orderPO.getUndoAbnormalTime()!="") {
 			sql = sql+",'"+orderPO.getUndoAbnormalTime()+"'";
 		}else {
@@ -85,9 +80,30 @@ public class OrderData implements OrderDao{
 		}else {
 			sql = sql+",null";
 		}
-		sql = sql+",'"+orderPO.getRoomType()+"','"+orderPO.getPromotionID()+"')";
-		//获得完整的sql指令
+		sql = sql+",'"+orderPO.getRoomType()+"','"+orderPO.getPromotionID()+"'";
 		
+		//处理roomIDs
+		String roomIDs = "";
+		if (orderPO.getRoomIDs()!=null) {
+			for (String string : orderPO.getRoomIDs()) {
+				roomIDs = roomIDs+string+"###";
+			}
+			sql = sql+",'"+roomIDs+"'";
+		}else {
+			sql = sql+",null";
+		}
+		//处理checkInTime/checkOutTime/可能为null的参数
+		if (orderPO.getCheckInTime()!=null&&orderPO.getCheckInTime()!="") {
+			sql = sql+",'"+orderPO.getCheckInTime()+"'";
+		}else{
+			sql = sql+",null";
+		}
+		if (orderPO.getCheckOutTime()!=null&&orderPO.getCheckOutTime()!="") {
+			sql = sql+",'"+orderPO.getCheckOutTime()+"')";
+		}else{
+			sql = sql+",null)";
+		}
+		//获得完整的sql指令
 		try {
 			conn  = DBConnection.getConnection();
 			statement = conn.createStatement();
@@ -157,12 +173,13 @@ public class OrderData implements OrderDao{
 			ResultSet rs=statement.executeQuery(sql);
 			
 			if (rs.next()) {
-				orderPO = new OrderPO(null, null, null, null, null, 0, 0, false, 0, 0, 0, 0, null, null, null, null,null);
+				orderPO = new OrderPO(null, null, null, null, null, null, 0, 0, false, 0, 0, 0, 0, null, null, null, null, null, null);
 				orderPO.setUesrID(rs.getString("userID"));
 				orderPO.setOrderID(orderID);
 				orderPO.setHotelId(rs.getString("hotelID"));
 				orderPO.setStartTime(rs.getString("startTime"));
 				orderPO.setEndTime(rs.getString("endTime"));
+				orderPO.setRoomIDs(rs.getString("roomIDs").split("###"));
 				orderPO.setRoomNum(rs.getInt("roomNum"));
 				orderPO.setRoomType(rs.getInt("roomType"));
 				orderPO.setHasChild(rs.getInt("hasChild")==1);
@@ -172,7 +189,8 @@ public class OrderData implements OrderDao{
 				orderPO.setAfterPromotionPrice(rs.getDouble("afterPromotionPrice"));
 				orderPO.setPromotionID(rs.getString("promotionID"));
 				
-				orderPO.setExecutedTime(rs.getString("executedTime"));
+				orderPO.setCheckInTime(rs.getString("checkInTime"));
+				orderPO.setCheckOutTime(rs.getString("checkOutTime"));
 				orderPO.setUndoAbnormalTime(rs.getString("undoAbnormalTime"));
 				orderPO.setAbnormalTime(rs.getString("abnormalTime"));
 				orderPO.setUndoUnexecutedTime(rs.getString("undoUnexecutedTime"));
