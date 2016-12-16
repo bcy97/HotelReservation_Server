@@ -249,5 +249,13 @@ public class DataRemoteObject extends UnicastRemoteObject
 		return orderDao.getOrderNum();
 	}
 
+	public boolean addWebBusiness(WebBusinessPO webBusinessPO) throws RemoteException {
+		return webBusinessDao.addWebBusiness(webBusinessPO);
+	}
+
+	public boolean addHotelManager(HotelManagerPO hotelManagerPO) throws RemoteException {
+		return hotelManagerDao.addHotelManager(hotelManagerPO);
+	}
+
 
 }

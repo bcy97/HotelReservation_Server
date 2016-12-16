@@ -5,7 +5,8 @@ import java.rmi.RemoteException;
 
 import po.AccountPO;
 
-public interface AccountDao extends Remote {
+public interface AccountDao extends Remote{
+	
 	public boolean addAccount(AccountPO po) throws RemoteException;
 	
 	public boolean modifyPassword(AccountPO po) throws RemoteException;
