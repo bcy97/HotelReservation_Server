@@ -37,9 +37,9 @@ public class HotelData implements HotelDao{
 	}
 
 	public boolean addHotel(HotelPO po) {
-		if (po.getHoteID()==null||po.getHotelName()==null||po.getCity()==null||po.getDistract()==null
+		if (po.getHoteID()==null||po.getHotelName()==null||po.getCity()==null
 				||po.getTradingArea()==null||po.getLocationOfHotel()==null
-				||po.getFacilities()==null||po.getEmptyRoomNum()==null) {
+				||po.getFacilities()==null) {
 			System.out.println("data.hotel_data.HotelData.addHotel参数错误");
 			return false;
 		}
@@ -52,9 +52,9 @@ public class HotelData implements HotelDao{
 		String pictures;
 		String empty;
 		String sql = "insert into hotel values('" +
-				po.getHoteID() + "','" + po.getHotelName() +"','"+po.getCity()+"','"+
-				po.getDistract()+"','"+po.getTradingArea()+"','"+po.getLocationOfHotel()+"','"+
-				po.getEvaluationGrades()+"','"+po.getLevelOfHotel()+"','"+po.getIntroduction()+"','"+
+				po.getHoteID() + "','" + po.getHotelName() +"','"+po.getCity()+"','"
+				+po.getTradingArea()+"','"+po.getLocationOfHotel()+"','"+po.getEvaluationGrades()
+				+"','"+po.getLevelOfHotel()+"','"+po.getIntroduction()+"','"+
 				po.getFacilities();
 		//处理picture的ArrayList
 		pictures = "";
@@ -62,23 +62,17 @@ public class HotelData implements HotelDao{
 			for (String  picture : po.getPicturesPath()) {
 				pictures+=picture+"###";
 			}
-			sql = sql+"','"+pictures+"','";
+			sql = sql+"','"+pictures+"',";
 		}else {
-			sql = sql+"',null,'";
+			sql = sql+"',null,";
 		}
-		//处理emptyRoomNum的map格式为"key1##value1###key2##value2###...key_n##value_n###"
-		empty = "";
-		HashMap<Integer, Integer> emptyRoom = po.getEmptyRoomNum();
-		for(Map.Entry<Integer, Integer> entry:emptyRoom.entrySet()){
-			empty+=entry.getKey()+"##"+entry.getValue()+"###";
-		}
-		sql = sql+empty;
 		//处理bussiness以防为空
 		if (po.getBussiness()!=null) {
-			sql = sql+"','"+po.getBussiness()+"')";
+			sql = sql+"'"+po.getBussiness()+"')";
 		}else {
-			sql = sql+"',null)";
+			sql = sql+"null)";
 		}
+		System.out.println(sql);
 		try {
 			conn  = DBConnection.getConnection();
 			statement = conn.createStatement();
@@ -95,9 +89,9 @@ public class HotelData implements HotelDao{
 	}
 
 	public boolean updateHotel(HotelPO po) {
-		if (po.getHoteID()==null||po.getHotelName()==null||po.getCity()==null||po.getDistract()==null
+		if (po.getHoteID()==null||po.getHotelName()==null||po.getCity()==null
 				||po.getTradingArea()==null||po.getLocationOfHotel()==null
-				||po.getFacilities()==null||po.getEmptyRoomNum()==null) {
+				||po.getFacilities()==null) {
 			System.out.println("data.hotel_data.HotelData.updateHotel参数错误");
 			return false;
 		}
@@ -140,10 +134,9 @@ public class HotelData implements HotelDao{
 			
 			ResultSet rs=statement.executeQuery(sql);
 			if (rs.next()) {
-				hotel = new HotelPO(hotelID, null, null, null, null, null, 0, null, null, null, null, null);
+				hotel = new HotelPO(null, null, null, null, null, 0, null, null, null, null);
 				hotel.setHotelName(rs.getString("hotelName"));
 				hotel.setCity(rs.getString("city"));
-				hotel.setDistract(rs.getString("distract"));
 				hotel.setTradingArea(rs.getString("tradingArea"));
 				hotel.setLocationOfHotel(rs.getString("locationOfHotel"));
 				hotel.setEvaluationGrades(rs.getDouble("evaluationGrades"));
@@ -161,15 +154,6 @@ public class HotelData implements HotelDao{
 					}
 					hotel.setPicturesPath(picturesPath);
 				}
-				
-				//解析空余房间
-				HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-				String[] emptyRooms = rs.getString("emptyRoomNum").split("###");
-				for (String string : emptyRooms) {
-					String[] temp = string.split("##");
-					map.put(Integer.valueOf(temp[0]), Integer.valueOf(temp[1]));
-				}
-				hotel.setEmptyRoomNum(map);
 				
 				statement.close();
 				conn.close();
@@ -217,10 +201,9 @@ public class HotelData implements HotelDao{
 			
 			ResultSet rs=statement.executeQuery(sql);
 			while (rs.next()) {
-				HotelPO hotel = new HotelPO(null, null, city, null, tradingArea, null, 0, null, null, null, null, null);
+				HotelPO hotel = new HotelPO(null, null, null, null, null, 0, null, null, null, null);
 				hotel.setHoteID(rs.getString("hotelID"));
 				hotel.setHotelName(rs.getString("hotelName"));
-				hotel.setDistract(rs.getString("distract"));
 				hotel.setLocationOfHotel(rs.getString("locationOfHotel"));
 				hotel.setEvaluationGrades(rs.getDouble("evaluationGrades"));
 				hotel.setLevelOfHotel(rs.getInt("levelOfHotel"));
@@ -237,16 +220,6 @@ public class HotelData implements HotelDao{
 					}
 					hotel.setPicturesPath(picturesPath);
 				}
-				
-				//解析空余房间
-				HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-				String[] emptyRooms = rs.getString("emptyRoomNum").split("###");
-				for (String string : emptyRooms) {
-					String[] temp = string.split("##");
-					map.put(Integer.valueOf(temp[0]), Integer.valueOf(temp[1]));
-				}
-				hotel.setEmptyRoomNum(map);
-				
 				
 				hotelList.add(hotel);
 			}

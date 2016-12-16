@@ -18,6 +18,7 @@ public class RemoteHelper {
 		DataRemoteObject dataRemoteObject;
 		try {
 			dataRemoteObject = new DataRemoteObject();
+//			System.setProperty("java.rmi.server.hostname", "192.168.236.1");
 			LocateRegistry.createRegistry(8888);
 			Naming.bind("rmi://localhost:8888/DataRemoteObject", dataRemoteObject);
 			System.out.print("Ready");

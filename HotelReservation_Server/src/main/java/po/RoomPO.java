@@ -1,39 +1,34 @@
 package po;
 
-import java.io.Serializable;
-import java.util.HashMap;
-
 
 /**
  * @param hotelId
- * @param roomId
  * @param roomType
- * @param price 小数点保留两位
- * @param notEmptyTime 保存房间不空闲的时间 key-value分别对应开始时间和结束时间，形式如“YYYY-MM-DD 12:00:00”
+ * @param roomNum
+ * @param price
+ * @param specificTimeRoomNum  接下来30天对应的房间数量, 0表示今天，1表示明天，依次类推，每天过0点后更新数组数据
  */
-public class RoomPO implements Serializable{
+public class RoomPO {
 
 	private String hotelId;
-	private String roomId;
-	private int roomType; 
+	private int roomType;
+	private int roomNum;
 	private double price;
-	private HashMap<String, String> notEmptyTime;
-	
+	private int[] specificTimeRoomNum;
 
 	/**
 	 * @param hotelId
-	 * @param roomId
 	 * @param roomType
-	 * @param price 小数点保留两位
-	 * @param notEmptyTime 保存房间不空闲的时间 key-value分别对应开始时间和结束时间，形式如“YYYY-MM-DD 12:00:00”
-s	 */
-	public RoomPO(String hotelId, String roomId, int roomType, double price, 
-			HashMap<String, String> notEmptyTime) {
+	 * @param roomNum
+	 * @param price
+	 * @param specificTimeRoomNum
+	 */
+	public RoomPO(String hotelId, int roomType, int roomNum, double price, int[] specificTimeRoomNum) {
 		this.hotelId = hotelId;
-		this.roomId = roomId;
 		this.roomType = roomType;
+		this.roomNum = roomNum;
 		this.price = price;
-		this.notEmptyTime = notEmptyTime;
+		this.specificTimeRoomNum = specificTimeRoomNum;
 	}
 
 	public String getHotelId() {
@@ -44,20 +39,20 @@ s	 */
 		this.hotelId = hotelId;
 	}
 
-	public String getRoomId() {
-		return roomId;
-	}
-
-	public void setRoomId(String roomId) {
-		this.roomId = roomId;
-	}
-
 	public int getRoomType() {
 		return roomType;
 	}
 
 	public void setRoomType(int roomType) {
 		this.roomType = roomType;
+	}
+
+	public int getRoomNum() {
+		return roomNum;
+	}
+
+	public void setRoomNum(int roomNum) {
+		this.roomNum = roomNum;
 	}
 
 	public double getPrice() {
@@ -68,12 +63,12 @@ s	 */
 		this.price = price;
 	}
 
-	public HashMap<String, String> getNotEmptyTime() {
-		return notEmptyTime;
+	public int[] getSpecificTimeRoomNum() {
+		return specificTimeRoomNum;
 	}
 
-	public void setNotEmptyTime(HashMap<String, String> notEmptyTime) {
-		this.notEmptyTime = notEmptyTime;
+	public void setSpecificTimeRoomNum(int[] specificTimeRoomNum) {
+		this.specificTimeRoomNum = specificTimeRoomNum;
 	}
-	
+
 }

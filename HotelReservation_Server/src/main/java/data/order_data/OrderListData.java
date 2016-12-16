@@ -39,12 +39,13 @@ public class OrderListData implements OrderListDao{
 			ResultSet rs=statement.executeQuery(sql);
 			
 			while (rs.next()) {
-				OrderPO orderPO = new OrderPO(null, null, null, null, null, 0, 0, false, 0, 0, 0, 0, null, null, null, null,null);
+				OrderPO orderPO = new OrderPO(null, null, null, null, null, null, 0, 0, false, 0, 0, 0, 0, null, null, null, null, null, null);
 				orderPO.setUesrID(rs.getString("userID"));
 				orderPO.setOrderID(rs.getString("orderID"));
 				orderPO.setHotelId(rs.getString("hotelID"));
 				orderPO.setStartTime(rs.getString("startTime"));
 				orderPO.setEndTime(rs.getString("endTime"));
+				orderPO.setRoomIDs(rs.getString("roomIDs").split("###"));
 				orderPO.setRoomNum(rs.getInt("roomNum"));
 				orderPO.setRoomType(rs.getInt("roomType"));
 				orderPO.setHasChild(rs.getInt("hasChild")==1);
@@ -54,7 +55,8 @@ public class OrderListData implements OrderListDao{
 				orderPO.setAfterPromotionPrice(rs.getDouble("afterPromotionPrice"));
 				orderPO.setPromotionID(rs.getString("promotionID"));
 				
-				orderPO.setExecutedTime(rs.getString("executedTime"));
+				orderPO.setCheckInTime(rs.getString("checkInTime"));
+				orderPO.setCheckOutTime(rs.getString("checkOutTime"));
 				orderPO.setUndoAbnormalTime(rs.getString("undoAbnormalTime"));
 				orderPO.setAbnormalTime(rs.getString("abnormalTime"));
 				orderPO.setUndoUnexecutedTime(rs.getString("undoUnexecutedTime"));

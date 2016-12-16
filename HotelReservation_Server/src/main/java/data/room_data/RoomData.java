@@ -16,11 +16,11 @@ import po.RoomPO;
 
 public class RoomData implements RoomDao{
 
-	public RoomPO getRoomInfo(String hotelId, String roomId) {
+	public RoomPO getRoomInfo(String hotelId, int roomType) {
 		RoomPO roomPO;
 		Connection conn;
 		Statement statement;
-		String sql = "select * from room where hotelId='"+hotelId+"' and roomId='"+roomId+"'";
+		String sql = "select * from room where hotelId='"+hotelId+"' and roomType='"+roomType+"'";
 		try {
 			conn  = DBConnection.getConnection();
 			statement = conn.createStatement();
@@ -28,19 +28,19 @@ public class RoomData implements RoomDao{
 			ResultSet rs=statement.executeQuery(sql);
 			
 			if (rs.next()) {
-				roomPO = new RoomPO(null, null, 0, 0,null);
+				roomPO = new RoomPO(null, 0, 0, 0, null);
 				roomPO.setHotelId(rs.getString("hotelId"));
-				roomPO.setRoomId(rs.getString("roomId"));
 				roomPO.setRoomType(rs.getInt("roomType"));
+				roomPO.setRoomNum(rs.getInt("roomNum"));
 				roomPO.setPrice(rs.getDouble("price"));
 				
-				HashMap<String, String> notEmptyTime = new HashMap<String, String>();
-				String[] emptyTime = rs.getString("emptyTime").split("###");
-				for (String string : emptyTime) {
-					String[] temp = string.split("##");
-					notEmptyTime.put(temp[0], temp[1]);
+				String specificTimeRoomNum = rs.getString("specificTimeRoomNum");
+				String[] roomNums = specificTimeRoomNum.split("###");
+				int[] nums = new int[roomNums.length];
+				for (int i = 0; i < roomNums.length; i++) {
+					nums[i] = Integer.valueOf(roomNums[i]);
 				}
-				roomPO.setNotEmptyTime(notEmptyTime);
+				roomPO.setSpecificTimeRoomNum(nums);
 				
 				statement.close();
 				conn.close();
@@ -55,21 +55,20 @@ public class RoomData implements RoomDao{
 	}
 
 	public boolean addRoom(RoomPO roomPO) {
+		if (roomPO==null||roomPO.getHotelId()==null||roomPO.getHotelId()=="") {
+			return false;
+		}
 		Connection conn;
 		Statement statement;
-		String sql="insert into room values('"+roomPO.getHotelId()+"','"+roomPO.getRoomId()+"',"+
-				roomPO.getRoomType()+","+roomPO.getPrice();
-
-		if (roomPO.getNotEmptyTime()==null) {
-			sql = sql +",null)";
-		}else {
-			String notEmptyTime = "";
-			Iterator<Entry<String, String>> iterator = roomPO.getNotEmptyTime().entrySet().iterator();
-			while(iterator.hasNext()){
-				Map.Entry<String, String> entry = (Entry<String, String>) iterator.next();
-				notEmptyTime=notEmptyTime+entry.getKey()+"##"+entry.getValue()+"###";
+		String sql="insert into room values('"+roomPO.getHotelId()+"','"+roomPO.getRoomType()+"',"+
+				roomPO.getPrice()+","+roomPO.getRoomNum()+",";
+		if (roomPO.getSpecificTimeRoomNum()!=null) {
+			int[] nums = roomPO.getSpecificTimeRoomNum();
+			String specificTimeRoomNum = "";
+			for (int i : nums) {
+				specificTimeRoomNum = specificTimeRoomNum+i+"###";
 			}
-			sql = sql+",'"+notEmptyTime;
+			sql = sql+"'"+specificTimeRoomNum+"')";
 		}
 		//获得完整的sql指令
 		
@@ -89,31 +88,20 @@ public class RoomData implements RoomDao{
 	}
 
 	public boolean updateRoom(RoomPO roomPO) {
+		if (roomPO==null||roomPO.getHotelId()==null||roomPO.getHotelId()=="") {
+			return false;
+		}
 		Connection conn;
 		Statement statement;
-		String sql="";
-		if (roomPO.getNotEmptyTime()!=null) {
-			String notEmptyTime = "";
-			Iterator<Entry<String, String>> iterator = roomPO.getNotEmptyTime().entrySet().iterator();
-			while(iterator.hasNext()){
-				Map.Entry<String, String> entry = (Entry<String, String>) iterator.next();
-				notEmptyTime=notEmptyTime+entry.getKey()+"##"+entry.getValue()+"###";
-			}
-			sql="update room set roomType="+roomPO.getRoomType()
-						+",price="+roomPO.getPrice()
-						+",notEmptyTime='"+notEmptyTime
-						+"' where hotelId='"+roomPO.getHotelId()+"'and roomId='"+roomPO.getRoomId()+"'";
-		}else {
-			sql="update room set roomType="+roomPO.getRoomType()
-						+",price="+roomPO.getPrice()
-						+"' where hotelId='"+roomPO.getHotelId()+"'and roomId='"+roomPO.getRoomId()+"'";
-		}
+		String sql="delete from room where hotelID='"+roomPO.getHotelId()+"' and roomType="+roomPO.getRoomType();
 		try {
 			conn  = DBConnection.getConnection();
 			statement = conn.createStatement();
 			statement.executeUpdate(sql);
 			statement.close();
 			conn.close();
+			
+			addRoom(roomPO);
 			
 			return true;
 			
@@ -135,13 +123,19 @@ public class RoomData implements RoomDao{
 			ResultSet rs=statement.executeQuery(sql);
 			
 			while (rs.next()) {
-				RoomPO roomPO = new RoomPO(null, null, 0, 0,null);
+				RoomPO roomPO = new RoomPO(null, 0, 0, 0, null);
 				roomPO.setHotelId(rs.getString("hotelId"));
-				roomPO.setRoomId(rs.getString("roomId"));
 				roomPO.setRoomType(rs.getInt("roomType"));
+				roomPO.setRoomNum(rs.getInt("roomNum"));
 				roomPO.setPrice(rs.getDouble("price"));
 				
-				hotelRoomsList.add(roomPO);
+				String specificTimeRoomNum = rs.getString("specificTimeRoomNum");
+				String[] roomNums = specificTimeRoomNum.split("###");
+				int[] nums = new int[roomNums.length];
+				for (int i = 0; i < roomNums.length; i++) {
+					nums[i] = Integer.valueOf(roomNums[i]);
+				}
+				roomPO.setSpecificTimeRoomNum(nums);
 				
 				statement.close();
 				conn.close();

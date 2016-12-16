@@ -2,6 +2,9 @@ package main;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,6 +17,12 @@ public class Main {
 	public static void main(String[] args) {
 		Main main = new Main();
 		main.createFrame();
+		try {
+			System.out.println(UnicastRemoteObject.exportObject(new Remote(){},0));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void createFrame() {

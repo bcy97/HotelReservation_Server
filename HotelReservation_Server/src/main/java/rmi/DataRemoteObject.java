@@ -65,8 +65,8 @@ public class DataRemoteObject extends UnicastRemoteObject
 		roomDao = new RoomData();
 	}
 
-	public RoomPO getRoomInfo(String hotelId, String roomId) throws RemoteException{
-		return roomDao.getRoomInfo(hotelId, roomId);
+	public RoomPO getRoomInfo(String hotelId, int roomType) throws RemoteException{
+		return roomDao.getRoomInfo(hotelId, roomType);
 	}
 
 	public boolean addRoom(RoomPO roomPO) throws RemoteException{

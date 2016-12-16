@@ -3,28 +3,49 @@ package datatest.hotel;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import data.hotel_data.HotelData;
 import po.HotelPO;
 
 public class HotelDataTest {
 
-//	public static void main(String[] args) {
-//		HotelData hotelData = new HotelData();
-//		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-//		map.put(0, 10);
-//		map.put(1, 10);
-//		HotelPO hotelPO = new HotelPO("1234", "汉庭", "南京", "玄武区", "新街口", "南京新街口汉庭酒店",4.7,0, "南京的新街口汉庭酒店", "大床房40间", null, map, "南京大学");
-//		hotelData.addHotel(hotelPO);
-//		System.out.println(hotelData.addHotel(new HotelPO("12335", "汉庭", "南京", "玄武区", "仙林中心", "南京新街口汉庭酒店",4.7,0, "南京的新街口汉庭酒店", "大床房40间", null, map, null)));
-//		System.out.println(hotelData.hotelIDExist("00001"));hoteID
-//		System.out.println(hotelData.updateHotel(new HotelPO("1234", "汉庭", "南京", "玄武区", "仙林中心", "南京新街口汉庭酒店",4.7,0, "南京的新街口汉庭酒店", "大床房40间", null, map, "南京大学")));
-//		ArrayList<HotelPO> hotelList = hotelData.SearchHotelList("南京", "仙林中心");
-//		for (HotelPO hotelPO2 : hotelList) {
-//			System.out.println(hotelPO2.getHoteID()+" "+hotelPO2.getHotelName()+" "+hotelPO2.getBussiness()+" "+hotelPO2.getEmptyRoomNum());
-//		}
-//		ArrayList<String> tradingAreas = hotelData.getTradingAreas("成都");
-//		for (String string : tradingAreas) {
-//			System.out.println(string);
-//		}
-//	}
+	static HotelData hotelData = new HotelData();
+	
+	public static void main(String[] args) {
+		addHotel();
+		testUpdateHotel();
+		testGetHotelInfoByHotelID();
+	}
 
+	public static void testHotelIDExist() {
+		System.out.println(hotelData.hotelIDExist("1234"));
+		System.out.println(hotelData.hotelIDExist("11111"));
+	}
+	
+	public static void addHotel() {
+		HotelPO po = new HotelPO("11111", "bcy豪华酒店", "南京", "马群","马群花园城",5.0, 5, "南京最豪华的五星级酒店", "酒店项目样样俱全", null, "南京大学");
+		System.out.println(hotelData.addHotel(po));
+	}
+	
+	public static void testUpdateHotel() {
+		ArrayList<String> strings = new ArrayList<String>();
+		strings.add("c:\\\\");
+		strings.add("d:\\\\");
+		HotelPO po = new HotelPO("11111", "bcy豪华酒店", "南京", "马群","马群花园城",5.0, 5, "南京最豪华的五星级酒店", "最豪华的床最豪华的酒店装饰", strings, null);
+		System.out.println(hotelData.updateHotel(po));
+	}
+	
+	public static void testGetHotelInfoByHotelID() {
+		HotelPO po = hotelData.getHotelInfoByHotelID("11111");
+		System.out.println(po.getHoteID());
+		System.out.println(po.getHotelName());
+		System.out.println(po.getCity());
+		System.out.println(po.getTradingArea());
+		System.out.println(po.getLocationOfHotel());
+		System.out.println(po.getEvaluationGrades());
+		System.out.println(po.getLevelOfHotel());
+		System.out.println(po.getIntroduction());
+		System.out.println(po.getFacilities());
+		System.out.println(po.getPicturesPath());
+		System.out.println(po.getBussiness());
+	}
 }
