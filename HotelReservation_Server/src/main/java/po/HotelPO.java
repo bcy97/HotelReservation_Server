@@ -7,6 +7,7 @@ import java.util.ArrayList;
  * @param hoteID 酒店ID
  * @param hotelName 酒店名称
  * @param city 城市
+ * @param distract 所在行政区
  * @param tradingArea 所属商圈
  * @param locationOfHotel 酒店地址
  * @param evaluationGrades 评价等级
@@ -165,7 +166,7 @@ public class HotelPO implements Serializable{
 	public void setBussiness(String bussiness) {
 		this.bussiness = bussiness;
 	}
-
+	
 	
 	
 }

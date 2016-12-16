@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @param endTime 结束时间
  * @param roomIDs 分配的房间id 数组
  * @param roomNum 酒店房间数量
- * @param roomType 房间类型
+ * @param roomId 房间类型
  * @param numberOfRooms  房间数量
  * @param hasChild  是否有小孩
  * @param numberOfPeople  入住人数

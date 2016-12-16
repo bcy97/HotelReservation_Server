@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @param time 信用修改时间
  * @param orderID 订单ID
  * @param action 操作  0:正常执行订单增加 1:异常订单扣除 2.撤销订单扣除 3.充值
- * @param creditChange 信用变化值
+ * @param cerditChange 信用变化值
  * @param nowCredit 当前信用
  * @author bcy
  *
@@ -67,8 +67,8 @@ public class CreditHistoryPO implements Serializable{
 		return creditChange;
 	}
 
-	public void setCreditChange(int creditChange) {
-		this.creditChange = creditChange;
+	public void setCreditChange(int cerditChange) {
+		this.creditChange = cerditChange;
 	}
 
 	public int getNowCredit() {

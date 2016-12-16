@@ -4,12 +4,12 @@ import java.io.Serializable;
 
 /**
  * @param hotelId
- * @param roomType
+ * @param roomId
  * @param roomNum
  * @param price
  * @param specificTimeRoomNum  接下来30天对应的房间数量, 0表示今天，1表示明天，依次类推，每天过0点后更新数组数据
  */
-public class RoomPO implements Serializable{
+public class RoomPO implements Serializable {
 
 	private String hotelId;
 	private int roomType;
