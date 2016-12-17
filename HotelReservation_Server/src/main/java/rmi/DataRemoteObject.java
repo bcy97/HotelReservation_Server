@@ -10,6 +10,7 @@ import data.credit_data.CreditData;
 import data.hotel_data.HotelData;
 import data.order_data.OrderData;
 import data.order_data.OrderListData;
+import data.picture_data.PictureData;
 import data.promotion_data.PromotionData;
 import data.room_data.RoomData;
 import data.user_data.ClientData;
@@ -22,6 +23,7 @@ import dataDao.promotion.PromotionDao;
 import dataDao.room.RoomDao;
 import dataDao.order.OrderDao;
 import dataDao.order.OrderListDao;
+import dataDao.picture.PictureDao;
 import dataDao.user.ClientDao;
 import dataDao.user.HotelManagerDao;
 import dataDao.user.WebBusinessDao;
@@ -38,7 +40,7 @@ import po.WebBusinessPO;
 
 public class DataRemoteObject extends UnicastRemoteObject 
 		implements AccountDao, ClientDao, HotelManagerDao,WebBusinessDao,CreditDao,
-		HotelDao, OrderDao, OrderListDao,PromotionDao, RoomDao {
+		HotelDao, OrderDao, OrderListDao,PromotionDao, RoomDao ,PictureDao{
 
 	private static final long serialVersionUID = 4029039744279087114L;
 	private AccountDao accountDao;
@@ -51,6 +53,7 @@ public class DataRemoteObject extends UnicastRemoteObject
 	private OrderListDao orderListDao;
 	private PromotionDao promotionDao;
 	private RoomDao roomDao;
+	private PictureDao pictureDao;
 	
 	protected DataRemoteObject() throws RemoteException {
 		accountDao = new AccountData();
@@ -63,6 +66,7 @@ public class DataRemoteObject extends UnicastRemoteObject
 		orderListDao = new OrderListData();
 		promotionDao = new PromotionData();
 		roomDao = new RoomData();
+		pictureDao = new PictureData();
 	}
 
 	public RoomPO getRoomInfo(String hotelId, int roomType) throws RemoteException{
@@ -255,6 +259,14 @@ public class DataRemoteObject extends UnicastRemoteObject
 
 	public boolean addHotelManager(HotelManagerPO hotelManagerPO) throws RemoteException {
 		return hotelManagerDao.addHotelManager(hotelManagerPO);
+	}
+
+	public byte[] getImageStr(String hotelID,String pictureName) throws RemoteException {
+		return pictureDao.getImageStr(hotelID,pictureName);
+	}
+
+	public boolean saveImage(byte[] bs, String hotelID, String pictureName) throws RemoteException {
+		return pictureDao.saveImage(bs, hotelID, pictureName);
 	}
 
 

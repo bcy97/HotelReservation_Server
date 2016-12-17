@@ -1,6 +1,5 @@
 package data.order_data;
 
-import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
