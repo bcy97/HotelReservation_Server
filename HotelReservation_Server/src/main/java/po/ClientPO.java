@@ -7,7 +7,6 @@ import java.io.Serializable;
  * @param phoneNumber 电话
  * @param trueName 真实姓名
  * @param identityID 身份证号
- * @param headImagePath 头像路径
  * @param vipType 会员类型 0:不是会员 1:普通会员 2:企业会员 
  * @param vipLevel 会员等级 0:不是会员 
  * @param vipInfo 若memberType为0则为空，否则为相应的生日或者企业信息
@@ -24,7 +23,7 @@ public class ClientPO implements Serializable{
 	private int vipLevel;
 	private String vipInfo;
 
-	public ClientPO(String userID, String phoneNumber, String trueName, String identityID, 
+	public ClientPO(String userID, String phoneNumber, String trueName, String identityID,
 			int vipType, int vipLevel, String vipInfo) {
 		this.userID = userID;
 		this.phoneNumber = phoneNumber;
@@ -66,7 +65,7 @@ public class ClientPO implements Serializable{
 	public void setIdentityID(String identityID) {
 		this.identityID = identityID;
 	}
-
+	
 	public int getVipType() {
 		return vipType;
 	}

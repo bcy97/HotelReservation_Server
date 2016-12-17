@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import data.database.DBConnection;
 import dataDao.order.OrderDao;
+import main.AutoChangeState;
 import po.EvaluationPO;
 import po.OrderPO;
 
@@ -46,6 +47,10 @@ public class OrderData implements OrderDao{
 			System.out.println("已存在该数据");
 			return false;
 		}
+		
+		//开始准备自动执行订单
+		AutoChangeState.setOrderAutoJob(orderPO.getStartTime(), orderPO.getOrderID());
+		
 		Connection conn;
 		Statement statement;
 		String sql = "insert into orders values('" +

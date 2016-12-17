@@ -56,23 +56,12 @@ public class HotelData implements HotelDao{
 				+po.getTradingArea()+"','"+po.getLocationOfHotel()+"','"+po.getEvaluationGrades()
 				+"','"+po.getLevelOfHotel()+"','"+po.getIntroduction()+"','"+
 				po.getFacilities();
-		//处理picture的ArrayList
-		pictures = "";
-		if (po.getPicturesPath()!=null) {
-			for (String  picture : po.getPicturesPath()) {
-				pictures+=picture+"###";
-			}
-			sql = sql+"','"+pictures+"',";
-		}else {
-			sql = sql+"',null,";
-		}
 		//处理bussiness以防为空
 		if (po.getBussiness()!=null) {
-			sql = sql+"'"+po.getBussiness()+"')";
+			sql = sql+"','"+po.getBussiness()+"')";
 		}else {
-			sql = sql+"null)";
+			sql = sql+"',null)";
 		}
-		System.out.println(sql);
 		try {
 			conn  = DBConnection.getConnection();
 			statement = conn.createStatement();
@@ -134,7 +123,8 @@ public class HotelData implements HotelDao{
 			
 			ResultSet rs=statement.executeQuery(sql);
 			if (rs.next()) {
-				hotel = new HotelPO(null, null, null, null, null, 0, null, null, null, null);
+				hotel = new HotelPO(null, null, null, null, null, 0, 0, null, null, null);
+				hotel.setHoteID(rs.getString("hotelID"));
 				hotel.setHotelName(rs.getString("hotelName"));
 				hotel.setCity(rs.getString("city"));
 				hotel.setTradingArea(rs.getString("tradingArea"));
@@ -144,16 +134,6 @@ public class HotelData implements HotelDao{
 				hotel.setIntroduction(rs.getString("introduction"));
 				hotel.setFacilities(rs.getString("facilities"));
 				hotel.setBussiness(rs.getString("bussiness"));
-				
-				//解析图片路径
-				if (rs.getString("picturesPath")!=null) {
-					String[] pictures = rs.getString("picturesPath").split("###");
-					ArrayList<String> picturesPath = new ArrayList<String>();
-					for (String string : pictures) {
-						picturesPath.add(string);
-					}
-					hotel.setPicturesPath(picturesPath);
-				}
 				
 				statement.close();
 				conn.close();
@@ -201,25 +181,16 @@ public class HotelData implements HotelDao{
 			
 			ResultSet rs=statement.executeQuery(sql);
 			while (rs.next()) {
-				HotelPO hotel = new HotelPO(null, null, null, null, null, 0, null, null, null, null);
+				HotelPO hotel = new HotelPO(null, null, null, null, null, 0, 0, null, null, null);
 				hotel.setHoteID(rs.getString("hotelID"));
 				hotel.setHotelName(rs.getString("hotelName"));
+				hotel.setCity(rs.getString("city"));
 				hotel.setLocationOfHotel(rs.getString("locationOfHotel"));
 				hotel.setEvaluationGrades(rs.getDouble("evaluationGrades"));
 				hotel.setLevelOfHotel(rs.getInt("levelOfHotel"));
 				hotel.setIntroduction(rs.getString("introduction"));
 				hotel.setFacilities(rs.getString("facilities"));
 				hotel.setBussiness(rs.getString("bussiness"));
-				
-				//解析图片路径
-				if (rs.getString("picturesPath")!=null) {
-					String[] pictures = rs.getString("picturesPath").split("###");
-					ArrayList<String> picturesPath = new ArrayList<String>();
-					for (String string : pictures) {
-						picturesPath.add(string);
-					}
-					hotel.setPicturesPath(picturesPath);
-				}
 				
 				hotelList.add(hotel);
 			}

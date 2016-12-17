@@ -2,13 +2,12 @@ package main;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.rmi.Remote;
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import data.order_data.OrderData;
+import po.OrderPO;
 import rmi.RemoteHelper;
 
 public class Main {
@@ -16,11 +15,6 @@ public class Main {
 	public static void main(String[] args) {
 		Main main = new Main();
 		main.createFrame();
-		try {
-			System.out.println(UnicastRemoteObject.exportObject(new Remote(){},0));
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	public void createFrame() {
@@ -37,6 +31,7 @@ public class Main {
 	private class ButtonActionListener implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
+			AutoChangeState.setRoomAutoJob();
 			new RemoteHelper();
 		}
 		

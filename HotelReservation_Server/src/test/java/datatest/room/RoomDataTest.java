@@ -10,7 +10,7 @@ public class RoomDataTest {
 	static RoomData roomData = new RoomData();
 	
 	public static void main(String[] args) {
-		testGetRoomInfo();
+		testAddRoom();
 }
 
 	public static void  testGetRoomInfo() {
@@ -26,8 +26,13 @@ public class RoomDataTest {
 	}
 	
 	public static void testAddRoom() {
-		int[] specificTimeRoomNum = {5,5,4,3,2,1,2};
-		RoomPO roomPO = new RoomPO("11111", 1, 1, 200, specificTimeRoomNum);
+		int[] specificTimeRoomNum = {5,5,4,3,2,
+									 1,2,3,4,5,
+									 4,4,4,4,4,
+									 4,4,4,4,4,
+									 4,4,4,4,4,
+									 4,4,4,4,4};
+		RoomPO roomPO = new RoomPO("11111", 1, 10, 200, specificTimeRoomNum);
 		System.out.println(roomData.addRoom(roomPO));
 	}
 	

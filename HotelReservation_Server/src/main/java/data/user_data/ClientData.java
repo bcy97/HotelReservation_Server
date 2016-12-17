@@ -52,7 +52,7 @@ public class ClientData implements ClientDao{
 
 			ResultSet rs = statement.executeQuery(sql);
 			if (rs.next()) {
-				clientPO = new ClientPO(null, null, null, null, 0, 0, null);
+				clientPO = new ClientPO(null, null, null, null,  0, 0, null);
 				clientPO.setUserID(rs.getString("userID"));
 				clientPO.setPhoneNumber(rs.getString("phoneNumber"));
 				clientPO.setTrueName(rs.getString("trueName"));
