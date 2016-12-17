@@ -20,18 +20,16 @@ public class ClientPO implements Serializable{
 	private String phoneNumber;
 	private String trueName;
 	private String identityID;
-	private String headImagePath;
 	private int vipType; 
 	private int vipLevel;
 	private String vipInfo;
 
 	public ClientPO(String userID, String phoneNumber, String trueName, String identityID, 
-			String headImagePath,int vipType, int vipLevel, String vipInfo) {
+			int vipType, int vipLevel, String vipInfo) {
 		this.userID = userID;
 		this.phoneNumber = phoneNumber;
 		this.trueName = trueName;
 		this.identityID = identityID;
-		this.headImagePath = headImagePath;
 		this.vipType = vipType;
 		this.vipLevel = vipLevel;
 		this.vipInfo = vipInfo;
@@ -69,14 +67,6 @@ public class ClientPO implements Serializable{
 		this.identityID = identityID;
 	}
 
-	public String getHeadImagePath() {
-		return headImagePath;
-	}
-
-	public void setHeadImagePath(String headImagePath) {
-		this.headImagePath = headImagePath;
-	}
-	
 	public int getVipType() {
 		return vipType;
 	}

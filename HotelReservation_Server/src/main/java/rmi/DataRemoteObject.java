@@ -261,12 +261,20 @@ public class DataRemoteObject extends UnicastRemoteObject
 		return hotelManagerDao.addHotelManager(hotelManagerPO);
 	}
 
-	public byte[] getImageStr(String hotelID,String pictureName) throws RemoteException {
-		return pictureDao.getImageStr(hotelID,pictureName);
+	public ArrayList<byte[]> getHotelImage(String hotelID) throws RemoteException {
+		return pictureDao.getHotelImage(hotelID);
 	}
 
-	public boolean saveImage(byte[] bs, String hotelID, String pictureName) throws RemoteException {
-		return pictureDao.saveImage(bs, hotelID, pictureName);
+	public boolean saveHotelImage(byte[] bs, String hotelID, String pictureName) throws RemoteException {
+		return pictureDao.saveHotelImage(bs, hotelID, pictureName);
+	}
+
+	public byte[] getUserImage(String userID) throws RemoteException {
+		return pictureDao.getUserImage(userID);
+	}
+
+	public boolean saveUserImage(byte[] bs, String userID) throws RemoteException {
+		return pictureDao.saveUserImage(bs, userID);
 	}
 
 

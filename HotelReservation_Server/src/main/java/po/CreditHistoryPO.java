@@ -6,7 +6,7 @@ import java.io.Serializable;
  * @param userID 用户ID
  * @param time 信用修改时间
  * @param orderID 订单ID
- * @param action 操作  0:正常执行订单增加 1:异常订单扣除 2.撤销订单扣除 3.充值
+ * @param action 操作  //0:正常执行订单增加 1:被置为异常订单扣除 2.酒店工作人员补登记异常订单恢复 3.撤销异常订单恢复 4.充值 5.撤销未执行订单扣除订单价值的一半
  * @param cerditChange 信用变化值
  * @param nowCredit 当前信用
  * @author bcy

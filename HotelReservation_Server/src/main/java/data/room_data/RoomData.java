@@ -137,11 +137,12 @@ public class RoomData implements RoomDao{
 				}
 				roomPO.setSpecificTimeRoomNum(nums);
 				
-				statement.close();
-				conn.close();
-				
-				return hotelRoomsList;
+				hotelRoomsList.add(roomPO);
 			}
+			statement.close();
+			conn.close();
+			
+			return hotelRoomsList;
 			
 		}catch (SQLException e) {
 			System.out.println(e.getMessage());
