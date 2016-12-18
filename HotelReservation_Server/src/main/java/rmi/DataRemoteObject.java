@@ -277,5 +277,9 @@ public class DataRemoteObject extends UnicastRemoteObject
 		return pictureDao.saveUserImage(bs, userID);
 	}
 
+	public ArrayList<String> getCities() throws RemoteException {
+		return hotelDao.getCities();
+	}
+
 
 }

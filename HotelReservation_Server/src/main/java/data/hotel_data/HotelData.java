@@ -1,5 +1,6 @@
 package data.hotel_data;
 
+import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -198,6 +199,30 @@ public class HotelData implements HotelDao{
 			conn.close();
 			
 			return hotelList;
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return null;
+	}
+
+	public ArrayList<String> getCities() throws RemoteException {
+		Connection conn;
+		Statement statement;
+		String sql = "select distinct name from locations";
+		ArrayList<String> cities = new ArrayList<String>();
+		try {
+			conn = DBConnection.getConnection();
+			statement =conn.createStatement();
+			
+			ResultSet rs=statement.executeQuery(sql);
+			while (rs.next()) {
+				cities.add(rs.getString("city"));
+			}
+			statement.close();
+			conn.close();
+			
+			return cities;
 			
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

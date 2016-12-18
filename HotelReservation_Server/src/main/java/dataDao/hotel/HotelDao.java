@@ -8,6 +8,8 @@ import po.HotelPO;
 
 public interface HotelDao extends Remote{
 	
+	public ArrayList<String> getCities() throws RemoteException;
+	
 	public boolean hotelIDExist(String hotelID) throws RemoteException;
 	
 	public boolean addHotel(HotelPO po) throws RemoteException;
