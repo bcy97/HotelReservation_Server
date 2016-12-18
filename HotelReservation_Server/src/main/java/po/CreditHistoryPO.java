@@ -22,12 +22,12 @@ public class CreditHistoryPO implements Serializable{
 	private int nowCredit;
 	
 	public CreditHistoryPO(String userID , String time , String orderID , 
-			int action , int cerditChange , int nowCredit) {
+			int action , int creditChange , int nowCredit) {
 		this.userID=userID;
 		this.time=time;
 		this.orderID=orderID;
 		this.action=action;
-		this.creditChange=cerditChange;
+		this.creditChange=creditChange;
 		this.nowCredit=nowCredit;
 	}
 
