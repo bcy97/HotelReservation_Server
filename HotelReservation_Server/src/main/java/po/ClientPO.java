@@ -23,7 +23,7 @@ public class ClientPO implements Serializable{
 	private int vipLevel;
 	private String vipInfo;
 
-	public ClientPO(String userID, String phoneNumber, String trueName, String identityID,
+	public ClientPO(String userID, String phoneNumber, String trueName, String identityID, 
 			int vipType, int vipLevel, String vipInfo) {
 		this.userID = userID;
 		this.phoneNumber = phoneNumber;
