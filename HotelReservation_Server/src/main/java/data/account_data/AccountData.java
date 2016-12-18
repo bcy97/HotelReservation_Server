@@ -19,8 +19,8 @@ public class AccountData implements AccountDao{
 		}
 		Connection conn;
 		Statement statement;
-		String sql = "insert into account (AccountID, password,identity) values('" +
-				po.getAccountID() + "','" + po.getPassword() +"','"+po.getIdentity()+"')";		
+		String sql = "insert into account  values('" +
+				po.getAccountID() + "','" + po.getPassword() +"','"+po.getIdentity()+"',0)";		
 		try {
 			conn  = DBConnection.getConnection();
 			statement = conn.createStatement();
