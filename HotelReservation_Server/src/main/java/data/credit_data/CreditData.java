@@ -60,6 +60,9 @@ public class CreditData implements CreditDao{
 			
 			ResultSet rs=statement.executeQuery(sql);
 			while (rs.next()) {
+				if (rs.getInt("action")==6) {
+					continue;
+				}
 				CreditHistoryPO creditHistoryPO = new CreditHistoryPO(null, null, null, 0, 0, 0);
 				creditHistoryPO.setUserID(rs.getString("userID"));
 				creditHistoryPO.setTime(rs.getString("time").substring(0,19));
@@ -86,11 +89,15 @@ public class CreditData implements CreditDao{
 
 	public int getCredit(String userID) {
 		ArrayList<CreditHistoryPO> creditHistory = getCreditHistory(userID);
-		return creditHistory.get(0).getNowCredit();
+		if (creditHistory==null||creditHistory.size()==0) {
+			return 1000;
+		}else {
+			return creditHistory.get(0).getNowCredit();
+		}
 	}
 
-	public boolean setVIPCredit(int level, int credit_num) {
-		String sql="insert into vipcredit values("+level+","+credit_num+")";
+	public boolean setVIPCredit(int level, int vipLevelCredit) {
+		String sql="update vipcredit set vipLevelCredit = "+vipLevelCredit +"where level ="+level;
 		Statement statement;
 		Connection conn;
 		

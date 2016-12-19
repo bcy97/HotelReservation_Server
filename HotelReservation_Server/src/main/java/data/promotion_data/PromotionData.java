@@ -49,8 +49,8 @@ public class PromotionData implements PromotionDao{
 				promotionPO.setPromotionID(rs.getString("promotionID"));
 				promotionPO.setPromotionName(rs.getString("promotionName"));
 				promotionPO.setDiscount(rs.getDouble("discount"));
-				promotionPO.setStartTime(rs.getString("startTime"));
-				promotionPO.setEndTime(rs.getString("endTime"));
+				promotionPO.setStartTime(rs.getString("startTime").substring(0,19));
+				promotionPO.setEndTime(rs.getString("endTime").substring(0,19));
 				promotionPO.setCooperateBusiness(rs.getString("cooperateBusiness"));
 				
 				//解析roomsAndDiscount数组
@@ -244,8 +244,8 @@ public class PromotionData implements PromotionDao{
 				promotionPO.setPromotionID(rs.getString("promotionID"));
 				promotionPO.setPromotionName(rs.getString("promotionName"));
 				promotionPO.setDiscount(rs.getDouble("discount"));
-				promotionPO.setStartTime(rs.getString("startTime"));
-				promotionPO.setEndTime(rs.getString("endTime"));
+				promotionPO.setStartTime(rs.getString("startTime").substring(0,19));
+				promotionPO.setEndTime(rs.getString("endTime").substring(0,19));
 				promotionPO.setCooperateBusiness(rs.getString("cooperateBusiness"));
 				
 				//解析roomsAndDiscount数组

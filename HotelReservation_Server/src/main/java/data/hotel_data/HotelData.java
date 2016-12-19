@@ -209,7 +209,7 @@ public class HotelData implements HotelDao{
 	public ArrayList<String> getCities() throws RemoteException {
 		Connection conn;
 		Statement statement;
-		String sql = "select distinct name from locations";
+		String sql = "select distinct city from locations";
 		ArrayList<String> cities = new ArrayList<String>();
 		try {
 			conn = DBConnection.getConnection();

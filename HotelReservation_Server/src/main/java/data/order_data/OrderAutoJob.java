@@ -24,6 +24,7 @@ public class OrderAutoJob implements Job{
 		OrderPO orderPO = orderData.getOrderByOrderID(orderID);
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		orderPO.setAbnormalTime(dateFormat.format(new Date()));
+		orderPO.setState(2);
 		orderData.updateOrder(orderPO);
 	}
 

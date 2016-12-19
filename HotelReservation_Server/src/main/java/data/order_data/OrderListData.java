@@ -43,9 +43,13 @@ public class OrderListData implements OrderListDao{
 				orderPO.setUesrID(rs.getString("userID"));
 				orderPO.setOrderID(rs.getString("orderID"));
 				orderPO.setHotelId(rs.getString("hotelID"));
-				orderPO.setStartTime(rs.getString("startTime"));
-				orderPO.setEndTime(rs.getString("endTime"));
-				orderPO.setRoomIDs(rs.getString("roomIDs").split("###"));
+				orderPO.setStartTime(rs.getString("startTime").substring(0,19));
+				orderPO.setEndTime(rs.getString("endTime").substring(0,19));
+				if (rs.getString("roomIDs")==null) {
+					orderPO.setRoomIDs(null);
+				}else {
+					orderPO.setRoomIDs(rs.getString("roomIDs").split("###"));
+				}
 				orderPO.setRoomNum(rs.getInt("roomNum"));
 				orderPO.setRoomType(rs.getInt("roomType"));
 				orderPO.setHasChild(rs.getInt("hasChild")==1);
@@ -55,11 +59,35 @@ public class OrderListData implements OrderListDao{
 				orderPO.setAfterPromotionPrice(rs.getDouble("afterPromotionPrice"));
 				orderPO.setPromotionID(rs.getString("promotionID"));
 				
-				orderPO.setCheckInTime(rs.getString("checkInTime"));
-				orderPO.setCheckOutTime(rs.getString("checkOutTime"));
-				orderPO.setUndoAbnormalTime(rs.getString("undoAbnormalTime"));
-				orderPO.setAbnormalTime(rs.getString("abnormalTime"));
-				orderPO.setUndoUnexecutedTime(rs.getString("undoUnexecutedTime"));
+				if (rs.getString("checkInTime")==null) {
+					orderPO.setCheckInTime(null);
+				}else {
+					orderPO.setCheckInTime(rs.getString("checkInTime").substring(0,19));
+				}
+				
+				if (rs.getString("checkOutTime")==null) {
+					orderPO.setCheckOutTime(null);
+				}else {
+					orderPO.setCheckOutTime(rs.getString("checkOutTime").substring(0,19));
+				}
+				
+				if (rs.getString("undoAbnormalTime")==null) {
+					orderPO.setUndoAbnormalTime(null);
+				}else {
+					orderPO.setUndoAbnormalTime(rs.getString("undoAbnormalTime").substring(0,19));
+				}
+				
+				if (rs.getString("abnormalTime")==null) {
+					orderPO.setAbnormalTime(null);
+				}else {
+					orderPO.setAbnormalTime(rs.getString("abnormalTime").substring(0,19));
+				}
+				
+				if (rs.getString("undoUnexecutedTime")==null) {
+					orderPO.setUndoUnexecutedTime(null);
+				}else {
+					orderPO.setUndoUnexecutedTime(rs.getString("undoUnexecutedTime").substring(0,19));
+				}
 				
 				orderPOs.add(orderPO);
 			}

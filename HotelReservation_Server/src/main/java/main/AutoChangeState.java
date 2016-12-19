@@ -39,7 +39,7 @@ public class AutoChangeState {
 			changeState.getSchdeulerFactory().scheduleJob(job, trigger);
 			changeState.getSchdeulerFactory().start();  
 		} catch (SchedulerException e) {
-			e.printStackTrace();
+			System.out.println("事件发生时间早于当前时间无法执行。");
 		}  
 	}
 	
