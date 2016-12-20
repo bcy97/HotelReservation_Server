@@ -13,7 +13,7 @@ import po.EvaluationPO;
 import po.OrderPO;
 
 public class OrderData implements OrderDao{
-
+	
 	public boolean orderIDExist(String orderID){
 		Connection conn;
 		Statement statement;
@@ -254,6 +254,7 @@ public class OrderData implements OrderDao{
 			conn  = DBConnection.getConnection();
 			statement = conn.createStatement();
 			statement.executeUpdate(sql);
+			
 			statement.close();
 			conn.close();
 			
@@ -283,7 +284,6 @@ public class OrderData implements OrderDao{
 				evaluationPO.setEvaluationContent(rs.getString("evaluationContent"));
 				statement.close();
 				conn.close();
-				
 				return evaluationPO;
 			}
 		} catch (SQLException e) {
@@ -300,9 +300,13 @@ public class OrderData implements OrderDao{
 			return null;
 		}
 		for (String orderID : orderIDs) {
-			evaluationPOs.add(getEvaluationByOrderID(orderID));
+			if (getEvaluationByOrderID(orderID)==null) {
+				continue;
+			}else {
+				
+				evaluationPOs.add(getEvaluationByOrderID(orderID));
+			}
 		}
-		
 		return evaluationPOs;
 	}
 
@@ -373,7 +377,6 @@ public class OrderData implements OrderDao{
 			}
 			statement.close();
 			conn.close();
-			System.out.println(orderIDs==null);
 			return orderIDs;
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

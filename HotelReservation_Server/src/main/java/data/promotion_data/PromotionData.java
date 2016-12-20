@@ -18,8 +18,12 @@ import po.PromotionPO;
 public class PromotionData implements PromotionDao{
 
 	public ArrayList<PromotionPO> getHotelPromotions(String hotelID, int promotionType) {
-		
-		String sql="select * from promotion where hotelID='"+hotelID+"' and promotionType='"+promotionType+"'";
+		String sql="";
+		if (promotionType==0) {
+			sql = "select * from promotion";
+		}else {
+			sql="select * from promotion where hotelID='"+hotelID+"' and promotionType='"+promotionType+"'";
+		}
 		
 		return getPromotions(sql);
 		

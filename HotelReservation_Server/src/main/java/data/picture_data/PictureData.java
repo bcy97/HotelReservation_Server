@@ -27,13 +27,12 @@ public class PictureData implements PictureDao{
         ArrayList<byte[]> datas = new ArrayList<byte[]>();
         //如果文件夹不存在则创建    
         if  (!file .exists()  && !file .isDirectory()){       
-        	System.out.println("//不存在");  
         	file .mkdir();    
         }  
         File[] files = file.listFiles();
         for (File file2 : files) {
 			if (file2.isFile()) {
-				String temp = imgFile+"\\"+file2.getName();
+				String temp = imgFile+"/"+file2.getName();
 				InputStream in = null;  
 				byte[] data = null;
 				try {  
