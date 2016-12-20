@@ -22,8 +22,8 @@ public class PictureData implements PictureDao{
 	}
 
 	public ArrayList<byte[]> getHotelImage(String hotelID) { 
-        String imgFile = "d:\\PictureDatabase\\"+hotelID; 
-        File file =new File("d:\\PictureDatabase\\"+hotelID);
+        String imgFile = "d:/PictureDatabase/"+hotelID; 
+        File file =new File("d:/PictureDatabase/"+hotelID);
         ArrayList<byte[]> datas = new ArrayList<byte[]>();
         //如果文件夹不存在则创建    
         if  (!file .exists()  && !file .isDirectory()){       
@@ -59,8 +59,8 @@ public class PictureData implements PictureDao{
 				bs[i]+=256;
 			}
 		}
-		String imgFilePath = "d:\\PictureDatabase\\"+hotelID;
-		File file =new File("d:\\PictureDatabase\\"+hotelID);    
+		String imgFilePath = "d:/PictureDatabase/"+hotelID;
+		File file =new File("d:/PictureDatabase/"+hotelID);    
         //如果文件夹不存在则创建    
         if  (!file .exists()  && !file .isDirectory()){       
         	file .mkdir();    
@@ -81,7 +81,11 @@ public class PictureData implements PictureDao{
 	}
 
 	public byte[] getUserImage(String userID) throws RemoteException {
-		String imgFile = "d:\\PictureDatabase\\userhead\\"+userID+".jpg"; 
+		String imgFile = "d:/PictureDatabase/userhead/"+userID+".jpg"; 
+		File file = new File(imgFile);
+		if (!file.exists()) {
+			imgFile = "d:/PictureDatabase/userhead/default.jpg";
+		}
         InputStream in = null;  
         byte[] data = null;
         try {  
@@ -104,7 +108,7 @@ public class PictureData implements PictureDao{
 				bs[i]+=256;
 			}
 		}
-		String imgFilePath = "d:\\PictureDatabase\\userhead\\"+userID+".jpg";
+		String imgFilePath = "d:/PictureDatabase/userhead/"+userID+".jpg";
 		OutputStream out;
 		try {
 			out = new FileOutputStream(imgFilePath);
