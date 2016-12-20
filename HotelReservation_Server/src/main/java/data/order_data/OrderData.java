@@ -296,7 +296,7 @@ public class OrderData implements OrderDao{
 		ArrayList<String> orderIDs = getHotelOrderID(hotelID);
 		ArrayList<EvaluationPO> evaluationPOs = new ArrayList<EvaluationPO>();
 		if (orderIDs==null) {
-			System.out.println("不存在该数据");
+			System.out.println("不存在该数据"+hotelID);
 			return null;
 		}
 		for (String orderID : orderIDs) {
@@ -356,6 +356,7 @@ public class OrderData implements OrderDao{
 	
 	private ArrayList<String> getHotelOrderID(String hotelID) {
 		
+		System.out.println(hotelID);
 		ArrayList<String> orderIDs;
 		Connection conn;
 		Statement statement;
@@ -372,7 +373,7 @@ public class OrderData implements OrderDao{
 			}
 			statement.close();
 			conn.close();
-			
+			System.out.println(orderIDs==null);
 			return orderIDs;
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

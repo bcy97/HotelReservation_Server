@@ -26,8 +26,12 @@ public class PromotionData implements PromotionDao{
 	}
 
 	public ArrayList<PromotionPO> getWebPromotions(int promotionType) {
-		
-		String sql = "select * from promotion where promotionType='"+promotionType+"'";
+		String sql="";
+		if (promotionType==0) {
+			sql = "select * from promotion";
+		}else {
+			sql = "select * from promotion where promotionType='"+promotionType+"'";
+		}
 		
 		return getPromotions(sql);
 	}
@@ -47,10 +51,19 @@ public class PromotionData implements PromotionDao{
 				promotionPO = new PromotionPO(0, null, null, null, 0, null, null, null, null, null, null);
 				promotionPO.setPromotionType(rs.getInt("promotionType"));
 				promotionPO.setPromotionID(rs.getString("promotionID"));
+				promotionPO.setHotelID(rs.getString("hotelID"));
 				promotionPO.setPromotionName(rs.getString("promotionName"));
 				promotionPO.setDiscount(rs.getDouble("discount"));
-				promotionPO.setStartTime(rs.getString("startTime").substring(0,19));
-				promotionPO.setEndTime(rs.getString("endTime").substring(0,19));
+				if (rs.getString("startTime")==null) {
+					promotionPO.setStartTime(null);
+				}else {
+					promotionPO.setStartTime(rs.getString("startTime").substring(0,19));
+				}
+				if (rs.getString("endTime")==null) {
+					promotionPO.setEndTime(null);
+				}else {
+					promotionPO.setEndTime(rs.getString("endTime").substring(0,19));
+				}
 				promotionPO.setCooperateBusiness(rs.getString("cooperateBusiness"));
 				
 				//解析roomsAndDiscount数组
@@ -118,17 +131,27 @@ public class PromotionData implements PromotionDao{
 		String sql = "insert into promotion values('"+promotionPO.getPromotionType()+"','"+promotionPO.getPromotionID()+"',";
 		
 		//判断hotelID是否为空
-		if (promotionPO.getHotelID()==null) {
+		if (promotionPO.getHotelID()==null||promotionPO.getHotelID().equals("")) {
 			sql = sql+"null,";
 		}else {
 			sql = sql +"'"+promotionPO.getHotelID()+"',";
 		}
 		
-		sql = sql+"'"+promotionPO.getPromotionName()+"','"+promotionPO.getDiscount()+"','"+promotionPO.getStartTime()+"','"
-				+promotionPO.getEndTime()+"',";
+		sql = sql+"'"+promotionPO.getPromotionName()+"','"+promotionPO.getDiscount()+"',";
 		
+		//判断startTime、endTime是否为空
+		if (promotionPO.getStartTime()==null||promotionPO.getStartTime().equals("")) {
+			sql = sql +"null,";
+		}else {
+			sql = sql +"'"+ promotionPO.getStartTime()+"',";
+		}
+		if (promotionPO.getEndTime()==null||promotionPO.getEndTime().equals("")) {
+			sql = sql + "null,";
+		}else {
+			sql = sql +"'"+promotionPO.getEndTime()+"',";
+		}
 		//判断cooperateBusiness是否为空
-		if (promotionPO.getCooperateBusiness()==null) {
+		if (promotionPO.getCooperateBusiness()==null||promotionPO.getCooperateBusiness().equals("")) {
 			sql = sql+"null,";
 		}else {
 			sql = sql+"'"+promotionPO.getCooperateBusiness()+"',";
@@ -242,10 +265,19 @@ public class PromotionData implements PromotionDao{
 				PromotionPO promotionPO = new PromotionPO(0, null, null, null, 0, null, null, null, null, null, null);
 				promotionPO.setPromotionType(rs.getInt("promotionType"));
 				promotionPO.setPromotionID(rs.getString("promotionID"));
+				promotionPO.setHotelID(rs.getString("hotelID"));
 				promotionPO.setPromotionName(rs.getString("promotionName"));
 				promotionPO.setDiscount(rs.getDouble("discount"));
-				promotionPO.setStartTime(rs.getString("startTime").substring(0,19));
-				promotionPO.setEndTime(rs.getString("endTime").substring(0,19));
+				if (rs.getString("startTime")==null) {
+					promotionPO.setStartTime(null);
+				}else {
+					promotionPO.setStartTime(rs.getString("startTime").substring(0,19));
+				}
+				if (rs.getString("endTime")==null) {
+					promotionPO.setEndTime(null);
+				}else {
+					promotionPO.setEndTime(rs.getString("endTime").substring(0,19));
+				}
 				promotionPO.setCooperateBusiness(rs.getString("cooperateBusiness"));
 				
 				//解析roomsAndDiscount数组
@@ -293,7 +325,6 @@ public class PromotionData implements PromotionDao{
 			}
 			statement.close();
 			conn.close();
-			
 			return promotionPOs;
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -322,6 +353,31 @@ public class PromotionData implements PromotionDao{
 		}
 		
 		return 0;
+	}
+
+	public boolean deletePromotion(String promotionID) throws RemoteException {
+		if (getPromotion(promotionID)==null) {
+			System.out.println("不存在该数据");
+			return false;
+		}
+		
+		//删除现有数据
+		Connection conn;
+		Statement statement;
+		String sql = "delete from promotion where promotionID="+promotionID;
+		try {
+			conn = DBConnection.getConnection();
+			statement =conn.createStatement();
+			statement.execute(sql);
+			
+			statement.close();
+			conn.close();
+			
+			return true;
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
 	}
 	
 }

@@ -97,7 +97,7 @@ public class CreditData implements CreditDao{
 	}
 
 	public boolean setVIPCredit(int level, int vipLevelCredit) {
-		String sql="update vipcredit set vipLevelCredit = "+vipLevelCredit +"where level ="+level;
+		String sql="update vipcredit set vipLevelCredit = "+vipLevelCredit +" where vipLevel ="+level;
 		Statement statement;
 		Connection conn;
 		

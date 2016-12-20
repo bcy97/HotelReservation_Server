@@ -281,5 +281,9 @@ public class DataRemoteObject extends UnicastRemoteObject
 		return hotelDao.getCities();
 	}
 
+	public boolean deletePromotion(String promotionID) throws RemoteException {
+		return promotionDao.deletePromotion(promotionID);
+	}
+
 
 }
