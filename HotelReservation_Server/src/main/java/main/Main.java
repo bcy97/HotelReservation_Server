@@ -12,7 +12,9 @@ import javafx.stage.Stage;
 import rmi.RemoteHelper;
 
 public class Main extends Application{
-
+	
+	private boolean label = true;
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -33,41 +35,22 @@ public class Main extends Application{
 		button.setPrefSize(250, 30);
 		button.setFocusTraversable(false);
 		grid.add(button, 0, 1);
-		button.setOnAction(new EventHandler<ActionEvent>(){
-			
-			public void handle(ActionEvent event){
-				AutoChangeState.setRoomAutoJob();
-				new RemoteHelper();
-			}
-			
-		});
+		
+		if(label == true){
+			button.setOnAction(new EventHandler<ActionEvent>(){
+				
+				public void handle(ActionEvent event){
+					AutoChangeState.setRoomAutoJob();
+					new RemoteHelper();
+					label = false;
+				}
+				
+			});
+		}
 		grid.getStylesheets().add("/CSS/button.css");
 		Scene scene = new Scene(grid, 240, 220);
 		stage.setScene(scene);
 		stage.show();
 		
 	}
-	
-//	public void createFrame() {
-//		JFrame mainFrame = new JFrame("HotelServer");
-//		JButton button = new JButton("start");
-//		
-//		button.addActionListener(new ButtonActionListener());
-//		button.setSize(150, 20);
-//		mainFrame.getContentPane().add(button);
-//		
-//		mainFrame.setVisible(true);
-//		mainFrame.setSize(300, 200);
-//		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//	}
-//	
-//	
-//	private class ButtonActionListener implements ActionListener{
-//
-//		public void actionPerformed(ActionEvent e) {
-//			AutoChangeState.setRoomAutoJob();
-//			new RemoteHelper();
-//		}
-//		
-//	}
 }
