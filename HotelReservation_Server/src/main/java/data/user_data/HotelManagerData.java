@@ -81,8 +81,8 @@ public class HotelManagerData implements HotelManagerDao{
 		}
 		Connection conn;
 		Statement statement;
-		String sql = "insert into hotelmanager values('"+hotelManagerPO.getHotelID()+"','"+hotelManagerPO.getTrueName()+"','"
-						+hotelManagerPO.getPhoneNumber()+"','"+hotelManagerPO.getIdentityCardID()+"')";
+		String sql = "insert into hotelmanager values('"+hotelManagerPO.getHotelID()+"','"+hotelManagerPO.getPhoneNumber()+"','"
+						+hotelManagerPO.getTrueName()+"','"+hotelManagerPO.getIdentityCardID()+"')";
 		try {
 			conn  = DBConnection.getConnection();
 			statement = conn.createStatement();

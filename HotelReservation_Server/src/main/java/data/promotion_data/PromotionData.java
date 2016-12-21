@@ -30,11 +30,7 @@ public class PromotionData implements PromotionDao{
 
 	public ArrayList<PromotionPO> getWebPromotions(int promotionType) {
 		String sql="";
-		if (promotionType==0) {
-			sql = "select * from promotion";
-		}else {
-			sql = "select * from promotion where promotionType='"+promotionType+"'";
-		}
+		sql = "select * from promotion where promotionType='"+promotionType+"'";
 		
 		return getPromotions(sql);
 	}
