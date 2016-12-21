@@ -20,11 +20,10 @@ public class PromotionData implements PromotionDao{
 	public ArrayList<PromotionPO> getHotelPromotions(String hotelID, int promotionType) {
 		String sql="";
 		if (promotionType==0) {
-			sql = "select * from promotion";
+			sql = "select * from promotion where hotelID ='"+hotelID+"'";
 		}else {
 			sql="select * from promotion where hotelID='"+hotelID+"' and promotionType='"+promotionType+"'";
 		}
-		
 		return getPromotions(sql);
 		
 	}
