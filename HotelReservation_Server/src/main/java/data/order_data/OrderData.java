@@ -350,7 +350,7 @@ public class OrderData implements OrderDao{
 			}
 			statement.close();
 			conn.close();
-			return count;
+			return count+2;
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
