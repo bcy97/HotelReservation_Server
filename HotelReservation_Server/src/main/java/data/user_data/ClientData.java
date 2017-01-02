@@ -18,12 +18,12 @@ public class ClientData implements ClientDao{
 		String sql = "";
 		if (po.getVipType()!=0) {
 			sql = "insert into client values('" 
-					+po.getUserID() + "'," + "encode('"+po.getPhoneNumber()+"','abcd')" +",'"+po.getTrueName()+"',encode('"+po.getIdentityID()
-					+"','abcd'),'"+po.getVipType()+"','"+po.getVipLevel()+"','"+po.getVipInfo()+"')";		
+					+po.getUserID() + "','" + po.getPhoneNumber() +"','"+po.getTrueName()+"','"+po.getIdentityID()
+					+"','"+po.getVipType()+"','"+po.getVipLevel()+"','"+po.getVipInfo()+"')";		
 		}else {
 			sql = "insert into client values('" 
-					+po.getUserID() + "'," + "encode('"+po.getPhoneNumber()+"','abcd')" +",'"+po.getTrueName()+"',encode('"+po.getIdentityID()
-					+"','abcd'),0,0,null)";		
+					+po.getUserID() + "','" + po.getPhoneNumber() +"','"+po.getTrueName()+"','"+po.getIdentityID()
+					+"',0,0,null)";		
 		}
 		try {
 			conn  = DBConnection.getConnection();
@@ -44,7 +44,7 @@ public class ClientData implements ClientDao{
 		Connection conn;
 		Statement statement;
 		ClientPO clientPO;
-		String sql = "select *,decode(phoneNumber,'abcd'),decode(identityID,'abcd') from client where userID='"+clientID+"'";
+		String sql = "select * from client where userID='"+clientID+"'";
 		try {
 			conn = DBConnection.getConnection();
 			statement = conn.createStatement();
@@ -53,9 +53,9 @@ public class ClientData implements ClientDao{
 			if (rs.next()) {
 				clientPO = new ClientPO(null, null, null, null,  0, 0, null);
 				clientPO.setUserID(rs.getString("userID"));
-				clientPO.setPhoneNumber(rs.getString("decode(phoneNumber,'abcd')"));
+				clientPO.setPhoneNumber(rs.getString("phoneNumber"));
 				clientPO.setTrueName(rs.getString("trueName"));
-				clientPO.setIdentityID(rs.getString("decode(identityID,'abcd')"));
+				clientPO.setIdentityID(rs.getString("identityID"));
 				clientPO.setVipType(rs.getInt("vipType"));
 				clientPO.setVipLevel(rs.getInt("vipLevel"));
 				clientPO.setVipInfo(rs.getString("vipInfo"));
