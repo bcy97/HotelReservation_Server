@@ -38,6 +38,11 @@ import po.PromotionPO;
 import po.RoomPO;
 import po.WebBusinessPO;
 
+/**
+ * rmi创建实类
+ * @author Mark.W
+ *
+ */
 public class DataRemoteObject extends UnicastRemoteObject 
 		implements AccountDao, ClientDao, HotelManagerDao,WebBusinessDao,CreditDao,
 		HotelDao, OrderDao, OrderListDao,PromotionDao, RoomDao ,PictureDao{
